@@ -10,21 +10,22 @@
 #import "RCViewController.h"
 #import <NSRails.h>
 #import "RCAll.h"
+#import "RCPreferences.h"
 
-#ifdef DEBUG1
-#define kAPIURL @"http://127.0.0.1:3000/api/"
+#ifdef DEBUG
+#define kApiURL @"http://127.0.0.1:3000/api/v2/"
 #else
-#define kAPIURL @"http://ruby-china.org/api/"
+#define kApiURL @"http://ruby-china.org/api/v2/"
 #endif
 
 @implementation RCAppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [NSRConfig defaultConfig].dateFormat = @"yyyy-MM-dd'T'HH:mm:sszz";
-    [NSRConfig defaultConfig].appURL = kAPIURL;
+    [NSRConfig defaultConfig].appURL = kApiURL;
+    [NSRConfig defaultConfig].appOAuthToken = [RCPreferences privateToken];
 
     return YES;
 }

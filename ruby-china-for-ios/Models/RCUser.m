@@ -13,6 +13,8 @@
 #import "RCReply.h"
 #import "RCPhoto.h"
 #import "RCNode.h"
+#import "NSData+Base64.h"
+#import "RCPreferences.h"
 
 static UIImage *defaultAvatarImage;
 
@@ -40,5 +42,32 @@ static UIImage *defaultAvatarImage;
     return defaultAvatarImage;
 }
 
+
++ (BOOL) authorize: (NSString *) login password:(NSString *)password {
+    BOOL result = NO;
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://127.0.0.1:3000/account/sign_in.json"]];
+    NSString *authStr = [NSString stringWithFormat:@"%@:%@", login, password];
+    NSData *authData = [authStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *authHeader = [NSString stringWithFormat:@"Basic %@", [authData nsr_base64Encoding]];
+
+    [request setValue:authHeader forHTTPHeaderField:@"Authorization"];
+    [request setHTTPMethod:@"POST"];
+    NSHTTPURLResponse *response;
+    NSError *error;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if ([response statusCode] == 201) {
+        id jsonResponse = [NSJSONSerialization JSONObjectWithData:data
+                                                          options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                            error:nil];
+        NSString *token = [jsonResponse objectForKey:@"private_token"];
+        
+        [RCPreferences setPrivateToken:token];
+        
+        result = YES;
+    }
+
+    return result;
+}
 
 @end

@@ -36,6 +36,7 @@
 		96A799301677709800F8A19E /* _reply.html in Resources */ = {isa = PBXBuildFile; fileRef = 96A7992F1677709800F8A19E /* _reply.html */; };
 		96A7993216777F8A00F8A19E /* Icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A7993116777F8A00F8A19E /* Icon-114.png */; };
 		96A7993416777FA200F8A19E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A7993316777FA200F8A19E /* Icon.png */; };
+		96AF0F42167B8943001E1AB7 /* RCPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AF0F41167B8943001E1AB7 /* RCPreferences.m */; };
 		96B0C277167832D4002DAF27 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C276167832D4002DAF27 /* NSDate+TimeAgo.m */; };
 		96B0C28216783BF2002DAF27 /* _no_replies.html in Resources */ = {isa = PBXBuildFile; fileRef = 96B0C28016783BF2002DAF27 /* _no_replies.html */; };
 		96B0C28316783BF2002DAF27 /* _replies.html in Resources */ = {isa = PBXBuildFile; fileRef = 96B0C28116783BF2002DAF27 /* _replies.html */; };
@@ -102,6 +103,8 @@
 		96A7992F1677709800F8A19E /* _reply.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = _reply.html; sourceTree = "<group>"; };
 		96A7993116777F8A00F8A19E /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-114.png"; path = "../Icon-114.png"; sourceTree = "<group>"; };
 		96A7993316777FA200F8A19E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		96AF0F40167B8943001E1AB7 /* RCPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCPreferences.h; sourceTree = "<group>"; };
+		96AF0F41167B8943001E1AB7 /* RCPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCPreferences.m; sourceTree = "<group>"; };
 		96B0C275167832D4002DAF27 /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeAgo.h"; sourceTree = "<group>"; };
 		96B0C276167832D4002DAF27 /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeAgo.m"; sourceTree = "<group>"; };
 		96B0C28016783BF2002DAF27 /* _no_replies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = _no_replies.html; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 				96FF7F921675D41500ADC02E /* RCAppDelegate.m */,
 				96FF7F9A1675D41500ADC02E /* MainStoryboard.storyboard */,
 				96FF7F891675D41500ADC02E /* Supporting Files */,
+				96AF0F40167B8943001E1AB7 /* RCPreferences.h */,
+				96AF0F41167B8943001E1AB7 /* RCPreferences.m */,
 			);
 			path = "ruby-china-for-ios";
 			sourceTree = "<group>";
@@ -482,6 +487,7 @@
 				9694366816763E8800F1E1A9 /* RCNavigationBar.m in Sources */,
 				96A4D0C91677282A000EAFAB /* RCNavLeftRightButtonItem.m in Sources */,
 				96B0C277167832D4002DAF27 /* NSDate+TimeAgo.m in Sources */,
+				96AF0F42167B8943001E1AB7 /* RCPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
