@@ -11,6 +11,7 @@
 #import "RCTopicTableViewCell.h"
 #import "RCAll.h"
 #import <SSPullToRefresh/SSPullToRefresh.h>
+#import "RCLoginViewController.h"
 
 @interface RCTopicsViewController ()
 
@@ -54,6 +55,11 @@
                                                                                 withSelector:@selector(refreshButtonClick)];
     
     navbar.topItem.title = @"社区";
+    
+    if (![RCUser currentUser]) {
+        RCLoginViewController *loginControlelr = [[RCLoginViewController alloc] init];
+        [self.navigationController pushViewController:loginControlelr animated:YES];
+    }
     
 	// Do any additional setup after loading the view, typically from a nib.
     [self refresh];

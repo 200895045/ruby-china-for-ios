@@ -12,3 +12,11 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+#ifdef DEBUG
+#define kAppDomain @"127.0.0.1:3000"
+#else
+#define kAppDomain @"ruby-china.org"
+#endif
+
+#define kApiURL [NSString stringWithFormat:@"http://%@/api/",kAppDomain]

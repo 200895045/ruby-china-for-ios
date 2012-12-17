@@ -24,4 +24,7 @@
 + (UIImage *) defaultAvatarImage;
 
 + (BOOL) authorize: (NSString *) login password:(NSString *)password;
+
++ (RCUser *) currentUser;
++ (void) checkLogin;
 @end

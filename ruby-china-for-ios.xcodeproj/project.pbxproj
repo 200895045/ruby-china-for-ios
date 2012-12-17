@@ -41,6 +41,8 @@
 		96B0C28216783BF2002DAF27 /* _no_replies.html in Resources */ = {isa = PBXBuildFile; fileRef = 96B0C28016783BF2002DAF27 /* _no_replies.html */; };
 		96B0C28316783BF2002DAF27 /* _replies.html in Resources */ = {isa = PBXBuildFile; fileRef = 96B0C28116783BF2002DAF27 /* _replies.html */; };
 		96B0C28616783D33002DAF27 /* _last_reply_info.html in Resources */ = {isa = PBXBuildFile; fileRef = 96B0C28516783D33002DAF27 /* _last_reply_info.html */; };
+		96CC60CD167F0FB100B7EB58 /* RCLoginForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CC60CC167F0FB100B7EB58 /* RCLoginForm.m */; };
+		96CC60D7167F114300B7EB58 /* RCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CC60D6167F114300B7EB58 /* RCLoginViewController.m */; };
 		96EE8A3516760D1500DF5FE6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EE8A3416760D1500DF5FE6 /* CoreData.framework */; };
 		96FF7F831675D41500ADC02E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FF7F821675D41500ADC02E /* UIKit.framework */; };
 		96FF7F851675D41500ADC02E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FF7F841675D41500ADC02E /* Foundation.framework */; };
@@ -110,6 +112,10 @@
 		96B0C28016783BF2002DAF27 /* _no_replies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = _no_replies.html; sourceTree = "<group>"; };
 		96B0C28116783BF2002DAF27 /* _replies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = _replies.html; sourceTree = "<group>"; };
 		96B0C28516783D33002DAF27 /* _last_reply_info.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = _last_reply_info.html; sourceTree = "<group>"; };
+		96CC60CB167F0FB100B7EB58 /* RCLoginForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLoginForm.h; sourceTree = "<group>"; };
+		96CC60CC167F0FB100B7EB58 /* RCLoginForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLoginForm.m; sourceTree = "<group>"; };
+		96CC60D5167F114300B7EB58 /* RCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLoginViewController.h; sourceTree = "<group>"; };
+		96CC60D6167F114300B7EB58 /* RCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLoginViewController.m; sourceTree = "<group>"; };
 		96EE8A3416760D1500DF5FE6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		96FF7F7E1675D41500ADC02E /* ruby-china-for-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ruby-china-for-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FF7F821675D41500ADC02E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -170,6 +176,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96CC60C9167F0F6900B7EB58 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				96CC60CB167F0FB100B7EB58 /* RCLoginForm.h */,
+				96CC60CC167F0FB100B7EB58 /* RCLoginForm.m */,
+			);
+			path = Forms;
+			sourceTree = "<group>";
+		};
 		96FF7F731675D41500ADC02E = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +219,7 @@
 		96FF7F881675D41500ADC02E /* ruby-china-for-ios */ = {
 			isa = PBXGroup;
 			children = (
+				96CC60C9167F0F6900B7EB58 /* Forms */,
 				96FF81AB1675ED8B00ADC02E /* Categories */,
 				96FF7FD81675DAEA00ADC02E /* Models */,
 				96FF7FD11675DADB00ADC02E /* Controllers */,
@@ -284,6 +300,8 @@
 				96FF7FD51675DADB00ADC02E /* RCTopicsViewController.m */,
 				9694365F167637D400F1E1A9 /* RCTopicViewController.h */,
 				96943660167637D400F1E1A9 /* RCTopicViewController.m */,
+				96CC60D5167F114300B7EB58 /* RCLoginViewController.h */,
+				96CC60D6167F114300B7EB58 /* RCLoginViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -488,6 +506,8 @@
 				96A4D0C91677282A000EAFAB /* RCNavLeftRightButtonItem.m in Sources */,
 				96B0C277167832D4002DAF27 /* NSDate+TimeAgo.m in Sources */,
 				96AF0F42167B8943001E1AB7 /* RCPreferences.m in Sources */,
+				96CC60CD167F0FB100B7EB58 /* RCLoginForm.m in Sources */,
+				96CC60D7167F114300B7EB58 /* RCLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

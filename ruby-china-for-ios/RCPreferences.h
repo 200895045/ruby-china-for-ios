@@ -15,4 +15,10 @@
 + (NSString *) privateToken;
 + (void)setPrivateToken:(NSString *)value;
 
++ (NSString *) login;
++ (void) setLogin: (NSString *)value;
+
++ (NSString *) password;
++ (void) setPassword: (NSString *)value;
+
 @end

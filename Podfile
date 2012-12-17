@@ -5,3 +5,4 @@ pod 'NSRails', :git => "https://github.com/huacnlee/nsrails.git", :branch => "wi
 pod 'SSPullToRefresh', '~> 1.0.1'
 pod 'SSToolkit', '~> 1.0.2'
 pod 'ASIHTTPRequest','1.8.1'
+pod 'Survey', '0.0.5'

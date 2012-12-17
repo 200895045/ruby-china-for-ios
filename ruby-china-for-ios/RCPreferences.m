@@ -17,6 +17,19 @@
     [self setValue:value forKey:@"private_token"];
 }
 
++ (NSString *) login {
+   return [[self userDefatuls] stringForKey:@"login"];
+}
++ (void) setLogin: (NSString *)value {
+   [self setValue:value forKey:@"login"];
+}
+
++ (NSString *) password {
+   return [[self userDefatuls] stringForKey:@"password"];
+}
++ (void) setPassword:(NSString *)value {
+   [self setValue:value forKey:@"password"];
+}
 
 #pragma mark - Private
 + (NSUserDefaults *) userDefatuls {

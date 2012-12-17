@@ -1,19 +1,34 @@
 
 PODS:
+- ASIHTTPRequest (1.8.1):
+  - ASIHTTPRequest/ASIWebPageRequest (= 1.8.1)
+  - ASIHTTPRequest/CloudFiles (= 1.8.1)
+  - ASIHTTPRequest/S3 (= 1.8.1)
+  - Reachability
+- ASIHTTPRequest/ASIWebPageRequest (1.8.1):
+  - Reachability
+- ASIHTTPRequest/CloudFiles (1.8.1):
+  - Reachability
+- ASIHTTPRequest/S3 (1.8.1):
+  - Reachability
 - MBProgressHUD (0.5)
 - NSRails (2.0.1)
+- Reachability (3.1.0)
 - SDWebImage (3.0):
   - SDWebImage/Main (= 3.0)
 - SDWebImage/Main (3.0)
 - SSPullToRefresh (1.0.1)
 - SSToolkit (1.0.2)
+- Survey (0.0.5)
 
 DEPENDENCIES:
+- ASIHTTPRequest (= 1.8.1)
 - MBProgressHUD (~> 0.5)
 - NSRails (from `https://github.com/huacnlee/nsrails.git', branch `with_cocopods')
 - SDWebImage (~> 3.0)
 - SSPullToRefresh (~> 1.0.1)
 - SSToolkit (~> 1.0.2)
+- Survey (= 0.0.5)
 
 EXTERNAL SOURCES:
   NSRails:
@@ -21,11 +36,17 @@ EXTERNAL SOURCES:
     :branch: with_cocopods
 
 SPEC CHECKSUMS:
+  ASIHTTPRequest: e606d2df58b0aace6c1cf1d39a08d3484f91324a
+  ASIHTTPRequest/ASIWebPageRequest: e606d2df58b0aace6c1cf1d39a08d3484f91324a
+  ASIHTTPRequest/CloudFiles: e606d2df58b0aace6c1cf1d39a08d3484f91324a
+  ASIHTTPRequest/S3: e606d2df58b0aace6c1cf1d39a08d3484f91324a
   MBProgressHUD: b23ee11c42253d6d804e8e0bfabdc334e8b2571f
   NSRails: ca02b8858faddda7e57383571b56bb78ebf37d8e
+  Reachability: 1c8584c5f26fa776695efef95caaa50402c94cfb
   SDWebImage: afa3965bcb37797ba4ecac49393897b99d1b4be7
   SDWebImage/Main: afa3965bcb37797ba4ecac49393897b99d1b4be7
   SSPullToRefresh: 79a7981b5a08316749d8fae0b5c813fbc2fac7dd
   SSToolkit: 852044205c6a15586431e90f46b2ef01f693285a
+  Survey: fc3f6b427843adc11ca1bfd194557fc964d8792c
 
 COCOAPODS: 0.16.0
