@@ -7,10 +7,10 @@
         <!--Navigation Controller-->
         <scene sceneID="EIv-Ds-9F1">
             <objects>
-                <navigationController definesPresentationContext="YES" toolbarHidden="NO" id="fFC-Jr-qJp" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="fFC-Jr-qJp" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="blackOpaque"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" alpha="0.80000000000000004" contentMode="top" barStyle="blackOpaque" id="kso-3n-e9T" customClass="RCNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -33,7 +33,7 @@
             <objects>
                 <viewController title="话题列表" id="2" customClass="RCTopicsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="16">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FI3-mE-5lq" customClass="RCTableView">

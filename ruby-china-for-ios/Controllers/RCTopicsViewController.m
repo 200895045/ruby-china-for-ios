@@ -12,6 +12,7 @@
 #import "RCAll.h"
 #import <SSPullToRefresh/SSPullToRefresh.h>
 #import "RCLoginViewController.h"
+#import "RCNewTopicViewController.h"
 
 @interface RCTopicsViewController ()
 
@@ -44,9 +45,9 @@
     // Toolbar
     RCNavLeftRightButtonItem *rightButton = [[RCNavLeftRightButtonItem alloc] initWithNavBar:navbar
                                                                                    leftRight:RCNavLeftRightButtonItemTypeRight
-                                                                             withButtonImage:[UIImage imageNamed:@"nav_setting_icon"]
+                                                                             withButtonImage:[UIImage imageNamed:@"nav_new_icon"]
                                                                                   withTarget:self
-                                                                                withSelector:@selector(refreshButtonClick)];
+                                                                                withSelector:@selector(newTopicButtonClick)];
     
     RCNavLeftRightButtonItem *leftButton  = [[RCNavLeftRightButtonItem alloc] initWithNavBar:navbar
                                                                                    leftRight:RCNavLeftRightButtonItemTypeLeft
@@ -77,6 +78,10 @@
 #pragma mark - 基础方法
 - (void) refreshButtonClick {
     [pullToRefreshView startLoadingAndExpand:YES];
+}
+
+- (void) newTopicButtonClick {
+    [self.navigationController pushViewController:[RCNewTopicViewController shared] animated:YES];
 }
 
 - (void) refresh {

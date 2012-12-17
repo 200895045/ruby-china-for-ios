@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9609EF9E167F258C005B4E90 /* nav_new_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9609EF9C167F258C005B4E90 /* nav_new_icon.png */; };
+		9609EF9F167F258C005B4E90 /* nav_new_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9609EF9D167F258C005B4E90 /* nav_new_icon@2x.png */; };
+		9609EFA2167F2665005B4E90 /* RCNewTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9609EFA1167F2665005B4E90 /* RCNewTopicViewController.m */; };
+		9609EFA5167F2884005B4E90 /* RCTopicForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9609EFA4167F2884005B4E90 /* RCTopicForm.m */; };
 		9694364C16762DD100F1E1A9 /* RCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694364B16762DD100F1E1A9 /* RCTableView.m */; };
 		96943655167631E000F1E1A9 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 96943652167631E000F1E1A9 /* bg.png */; };
 		96943656167631E000F1E1A9 /* default_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 96943653167631E000F1E1A9 /* default_avatar.png */; };
@@ -71,6 +75,12 @@
 
 /* Begin PBXFileReference section */
 		0D165BD3CF12497C83A0B0CD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9609EF9C167F258C005B4E90 /* nav_new_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nav_new_icon.png; path = icons/nav_new_icon.png; sourceTree = "<group>"; };
+		9609EF9D167F258C005B4E90 /* nav_new_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nav_new_icon@2x.png"; path = "icons/nav_new_icon@2x.png"; sourceTree = "<group>"; };
+		9609EFA0167F2665005B4E90 /* RCNewTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCNewTopicViewController.h; sourceTree = "<group>"; };
+		9609EFA1167F2665005B4E90 /* RCNewTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCNewTopicViewController.m; sourceTree = "<group>"; };
+		9609EFA3167F2884005B4E90 /* RCTopicForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTopicForm.h; sourceTree = "<group>"; };
+		9609EFA4167F2884005B4E90 /* RCTopicForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTopicForm.m; sourceTree = "<group>"; };
 		9694364A16762DD100F1E1A9 /* RCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTableView.h; sourceTree = "<group>"; };
 		9694364B16762DD100F1E1A9 /* RCTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTableView.m; sourceTree = "<group>"; };
 		96943652167631E000F1E1A9 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
@@ -181,6 +191,8 @@
 			children = (
 				96CC60CB167F0FB100B7EB58 /* RCLoginForm.h */,
 				96CC60CC167F0FB100B7EB58 /* RCLoginForm.m */,
+				9609EFA3167F2884005B4E90 /* RCTopicForm.h */,
+				9609EFA4167F2884005B4E90 /* RCTopicForm.m */,
 			);
 			path = Forms;
 			sourceTree = "<group>";
@@ -253,6 +265,8 @@
 		96FF7FB11675D58F00ADC02E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9609EF9C167F258C005B4E90 /* nav_new_icon.png */,
+				9609EF9D167F258C005B4E90 /* nav_new_icon@2x.png */,
 				96A4D09E16771202000EAFAB /* tableview_cell_border_bottom.png */,
 				96A4D09F16771202000EAFAB /* tableview_cell_border_bottom@2x.png */,
 				96A4D0A016771202000EAFAB /* tableview_cell_border_top.png */,
@@ -302,6 +316,8 @@
 				96943660167637D400F1E1A9 /* RCTopicViewController.m */,
 				96CC60D5167F114300B7EB58 /* RCLoginViewController.h */,
 				96CC60D6167F114300B7EB58 /* RCLoginViewController.m */,
+				9609EFA0167F2665005B4E90 /* RCNewTopicViewController.h */,
+				9609EFA1167F2665005B4E90 /* RCNewTopicViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -444,6 +460,8 @@
 				96B0C28216783BF2002DAF27 /* _no_replies.html in Resources */,
 				96B0C28316783BF2002DAF27 /* _replies.html in Resources */,
 				96B0C28616783D33002DAF27 /* _last_reply_info.html in Resources */,
+				9609EF9E167F258C005B4E90 /* nav_new_icon.png in Resources */,
+				9609EF9F167F258C005B4E90 /* nav_new_icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +526,8 @@
 				96AF0F42167B8943001E1AB7 /* RCPreferences.m in Sources */,
 				96CC60CD167F0FB100B7EB58 /* RCLoginForm.m in Sources */,
 				96CC60D7167F114300B7EB58 /* RCLoginViewController.m in Sources */,
+				9609EFA2167F2665005B4E90 /* RCNewTopicViewController.m in Sources */,
+				9609EFA5167F2884005B4E90 /* RCTopicForm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
