@@ -13,9 +13,5 @@
 @implementation RCNote
 @synthesize user, title, body, wordCount, changesCout, createdAt, updatedAt;
 
-- (BOOL) shouldOnlySendIDKeyForNestedObjectProperty:(NSString *)property
-{
-    return [property isEqualToString:@"user"];
-}
 
 @end

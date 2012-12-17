@@ -91,9 +91,11 @@
 
 - (void) refresh {
     [pullToRefreshView startLoading];
-    [RCTopic remoteAllAsync:^(NSArray *allRemote, NSError *error) {
-        topics = allRemote;
-        [tableView reloadData];
+    [RCTopic findWithPage:1 perPage:20 async:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            topics = objects;
+            [tableView reloadData];
+        }
     }];
     [pullToRefreshView finishLoading];
 }

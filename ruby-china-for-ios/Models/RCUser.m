@@ -7,35 +7,21 @@
 //
 
 #import "RCUser.h"
-
 #import "RCTopic.h"
-#import "RCNote.h"
 #import "RCReply.h"
-#import "RCPhoto.h"
 #import "RCNode.h"
 #import "NSData+Base64.h"
 #import "RCPreferences.h"
-#import <NSRails/NSRConfig.h>
 
 static UIImage *defaultAvatarImage;
 
 @implementation RCUser
-@synthesize topics, notes, replies, email, name, twitter, location, bio, website, avatarUrl, tagline, login;
+@synthesize email, name, twitter, location, bio, website, avatarUrl, tagline, login;
 
 static RCUser *_currentUser;
 
-- (Class) nestedClassForProperty:(NSString *)property
-{
-    if ([property isEqualToString:@"topics"])
-        return [RCTopic class];
-    if ([property isEqualToString:@"notes"])
-        return [RCNote class];
-    if ([property isEqualToString:@"replies"])
-        return [RCReply class];
-    if ([property isEqualToString:@"photos"])
-        return [RCPhoto class];
-
-    return [super nestedClassForProperty:property];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"RCUser: <ID: %d>",self.ID];
 }
 
 + (UIImage *) defaultAvatarImage {
@@ -69,9 +55,11 @@ static RCUser *_currentUser;
         NSString *token = [jsonResponse objectForKey:@"private_token"];
         [RCPreferences setPrivateToken:[NSString stringWithFormat:@"%@1",token]];
         
-        [NSRConfig defaultConfig].appOAuthToken = token;
-        
-        _currentUser = [RCUser remoteObjectWithStringID:login error:nil];
+        [RCUser findByStringId:login async:^(id object, NSError *error) {
+            if (!error) {
+                _currentUser = object;
+            }
+        }];
         
         result = YES;
     }

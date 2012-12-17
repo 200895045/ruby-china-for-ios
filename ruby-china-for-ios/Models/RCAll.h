@@ -7,9 +7,6 @@
 //
 
 #import "RCNode.h"
-#import "RCNote.h"
-#import "RCPhoto.h"
 #import "RCReply.h"
-#import "RCSection.h"
 #import "RCTopic.h"
 #import "RCUser.h"

@@ -10,7 +10,6 @@
 		9609EF9E167F258C005B4E90 /* nav_new_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9609EF9C167F258C005B4E90 /* nav_new_icon.png */; };
 		9609EF9F167F258C005B4E90 /* nav_new_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9609EF9D167F258C005B4E90 /* nav_new_icon@2x.png */; };
 		9609EFA2167F2665005B4E90 /* RCNewTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9609EFA1167F2665005B4E90 /* RCNewTopicViewController.m */; };
-		9609EFA5167F2884005B4E90 /* RCTopicForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9609EFA4167F2884005B4E90 /* RCTopicForm.m */; };
 		9694364C16762DD100F1E1A9 /* RCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694364B16762DD100F1E1A9 /* RCTableView.m */; };
 		96943655167631E000F1E1A9 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 96943652167631E000F1E1A9 /* bg.png */; };
 		96943656167631E000F1E1A9 /* default_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 96943653167631E000F1E1A9 /* default_avatar.png */; };
@@ -53,6 +52,8 @@
 		96EFA992167F5CA4008FAB7A /* editor_node_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96EFA98E167F5CA4008FAB7A /* editor_node_icon.png */; };
 		96EFA993167F5CA4008FAB7A /* editor_node_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96EFA98F167F5CA4008FAB7A /* editor_node_icon@2x.png */; };
 		96EFA997167F63FD008FAB7A /* RCNodeSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EFA996167F63FD008FAB7A /* RCNodeSelectViewController.m */; };
+		96EFA9A5167F7A22008FAB7A /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EFA9A4167F7A22008FAB7A /* NSData+Base64.m */; };
+		96EFA9A8167F7A7C008FAB7A /* RCBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EFA9A7167F7A7C008FAB7A /* RCBaseModel.m */; };
 		96FF7F831675D41500ADC02E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FF7F821675D41500ADC02E /* UIKit.framework */; };
 		96FF7F851675D41500ADC02E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FF7F841675D41500ADC02E /* Foundation.framework */; };
 		96FF7F871675D41500ADC02E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FF7F861675D41500ADC02E /* CoreGraphics.framework */; };
@@ -67,13 +68,9 @@
 		96FF7FD71675DADB00ADC02E /* RCTopicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FF7FD51675DADB00ADC02E /* RCTopicsViewController.m */; };
 		96FF81891675DFF000ADC02E /* RCNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FF81791675DFF000ADC02E /* RCNode.m */; };
 		96FF818A1675DFF000ADC02E /* RCNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FF817B1675DFF000ADC02E /* RCNote.m */; };
-		96FF818B1675DFF000ADC02E /* RCPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FF817D1675DFF000ADC02E /* RCPhoto.m */; };
 		96FF818C1675DFF000ADC02E /* RCReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FF817F1675DFF000ADC02E /* RCReply.m */; };
-		96FF818D1675DFF000ADC02E /* RCSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FF81821675DFF000ADC02E /* RCSection.m */; };
 		96FF818E1675DFF000ADC02E /* RCTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FF81841675DFF000ADC02E /* RCTopic.m */; };
 		96FF818F1675DFF000ADC02E /* RCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FF81861675DFF000ADC02E /* RCUser.m */; };
-		96FF81AE1675EDAF00ADC02E /* NSRRequest+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FF81AD1675EDAF00ADC02E /* NSRRequest+Extend.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		96FF81B41675EFA000ADC02E /* RCRemoteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FF81B31675EF9F00ADC02E /* RCRemoteObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		96FF81B81675F6C700ADC02E /* RCTopicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FF81B71675F6C700ADC02E /* RCTopicTableViewCell.m */; };
 		CA3E06058E4B474784FD7A3E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D165BD3CF12497C83A0B0CD /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -84,8 +81,6 @@
 		9609EF9D167F258C005B4E90 /* nav_new_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nav_new_icon@2x.png"; path = "icons/nav_new_icon@2x.png"; sourceTree = "<group>"; };
 		9609EFA0167F2665005B4E90 /* RCNewTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCNewTopicViewController.h; sourceTree = "<group>"; };
 		9609EFA1167F2665005B4E90 /* RCNewTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCNewTopicViewController.m; sourceTree = "<group>"; };
-		9609EFA3167F2884005B4E90 /* RCTopicForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTopicForm.h; sourceTree = "<group>"; };
-		9609EFA4167F2884005B4E90 /* RCTopicForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTopicForm.m; sourceTree = "<group>"; };
 		9694364A16762DD100F1E1A9 /* RCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTableView.h; sourceTree = "<group>"; };
 		9694364B16762DD100F1E1A9 /* RCTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTableView.m; sourceTree = "<group>"; };
 		96943652167631E000F1E1A9 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
@@ -138,6 +133,10 @@
 		96EFA98F167F5CA4008FAB7A /* editor_node_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "editor_node_icon@2x.png"; path = "icons/editor_node_icon@2x.png"; sourceTree = "<group>"; };
 		96EFA995167F63FD008FAB7A /* RCNodeSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCNodeSelectViewController.h; sourceTree = "<group>"; };
 		96EFA996167F63FD008FAB7A /* RCNodeSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCNodeSelectViewController.m; sourceTree = "<group>"; };
+		96EFA9A3167F7A22008FAB7A /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		96EFA9A4167F7A22008FAB7A /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		96EFA9A6167F7A7C008FAB7A /* RCBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCBaseModel.h; sourceTree = "<group>"; };
+		96EFA9A7167F7A7C008FAB7A /* RCBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCBaseModel.m; sourceTree = "<group>"; };
 		96FF7F7E1675D41500ADC02E /* ruby-china-for-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ruby-china-for-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FF7F821675D41500ADC02E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		96FF7F841675D41500ADC02E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -160,21 +159,13 @@
 		96FF81791675DFF000ADC02E /* RCNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCNode.m; sourceTree = "<group>"; };
 		96FF817A1675DFF000ADC02E /* RCNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCNote.h; sourceTree = "<group>"; };
 		96FF817B1675DFF000ADC02E /* RCNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCNote.m; sourceTree = "<group>"; };
-		96FF817C1675DFF000ADC02E /* RCPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCPhoto.h; sourceTree = "<group>"; };
-		96FF817D1675DFF000ADC02E /* RCPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCPhoto.m; sourceTree = "<group>"; };
 		96FF817E1675DFF000ADC02E /* RCReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCReply.h; sourceTree = "<group>"; };
 		96FF817F1675DFF000ADC02E /* RCReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCReply.m; sourceTree = "<group>"; };
 		96FF81801675DFF000ADC02E /* RCAll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCAll.h; sourceTree = "<group>"; };
-		96FF81811675DFF000ADC02E /* RCSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCSection.h; sourceTree = "<group>"; };
-		96FF81821675DFF000ADC02E /* RCSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCSection.m; sourceTree = "<group>"; };
 		96FF81831675DFF000ADC02E /* RCTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTopic.h; sourceTree = "<group>"; };
 		96FF81841675DFF000ADC02E /* RCTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTopic.m; sourceTree = "<group>"; };
 		96FF81851675DFF000ADC02E /* RCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCUser.h; sourceTree = "<group>"; };
 		96FF81861675DFF000ADC02E /* RCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCUser.m; sourceTree = "<group>"; };
-		96FF81AC1675EDAF00ADC02E /* NSRRequest+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRRequest+Extend.h"; sourceTree = "<group>"; };
-		96FF81AD1675EDAF00ADC02E /* NSRRequest+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRRequest+Extend.m"; sourceTree = "<group>"; };
-		96FF81B21675EF9F00ADC02E /* RCRemoteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCRemoteObject.h; sourceTree = "<group>"; };
-		96FF81B31675EF9F00ADC02E /* RCRemoteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCRemoteObject.m; sourceTree = "<group>"; };
 		96FF81B61675F6C700ADC02E /* RCTopicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTopicTableViewCell.h; sourceTree = "<group>"; };
 		96FF81B71675F6C700ADC02E /* RCTopicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTopicTableViewCell.m; sourceTree = "<group>"; };
 		E94479C9AC614F889F9EAFE7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -202,8 +193,6 @@
 			children = (
 				96CC60CB167F0FB100B7EB58 /* RCLoginForm.h */,
 				96CC60CC167F0FB100B7EB58 /* RCLoginForm.m */,
-				9609EFA3167F2884005B4E90 /* RCTopicForm.h */,
-				9609EFA4167F2884005B4E90 /* RCTopicForm.m */,
 			);
 			path = Forms;
 			sourceTree = "<group>";
@@ -346,17 +335,15 @@
 				96FF81791675DFF000ADC02E /* RCNode.m */,
 				96FF817A1675DFF000ADC02E /* RCNote.h */,
 				96FF817B1675DFF000ADC02E /* RCNote.m */,
-				96FF817C1675DFF000ADC02E /* RCPhoto.h */,
-				96FF817D1675DFF000ADC02E /* RCPhoto.m */,
 				96FF817E1675DFF000ADC02E /* RCReply.h */,
 				96FF817F1675DFF000ADC02E /* RCReply.m */,
 				96FF81801675DFF000ADC02E /* RCAll.h */,
-				96FF81811675DFF000ADC02E /* RCSection.h */,
-				96FF81821675DFF000ADC02E /* RCSection.m */,
 				96FF81831675DFF000ADC02E /* RCTopic.h */,
 				96FF81841675DFF000ADC02E /* RCTopic.m */,
 				96FF81851675DFF000ADC02E /* RCUser.h */,
 				96FF81861675DFF000ADC02E /* RCUser.m */,
+				96EFA9A6167F7A7C008FAB7A /* RCBaseModel.h */,
+				96EFA9A7167F7A7C008FAB7A /* RCBaseModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -364,10 +351,8 @@
 		96FF81AB1675ED8B00ADC02E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				96FF81B21675EF9F00ADC02E /* RCRemoteObject.h */,
-				96FF81B31675EF9F00ADC02E /* RCRemoteObject.m */,
-				96FF81AC1675EDAF00ADC02E /* NSRRequest+Extend.h */,
-				96FF81AD1675EDAF00ADC02E /* NSRRequest+Extend.m */,
+				96EFA9A3167F7A22008FAB7A /* NSData+Base64.h */,
+				96EFA9A4167F7A22008FAB7A /* NSData+Base64.m */,
 				96B0C275167832D4002DAF27 /* NSDate+TimeAgo.h */,
 				96B0C276167832D4002DAF27 /* NSDate+TimeAgo.m */,
 			);
@@ -530,13 +515,9 @@
 				96FF7FD71675DADB00ADC02E /* RCTopicsViewController.m in Sources */,
 				96FF81891675DFF000ADC02E /* RCNode.m in Sources */,
 				96FF818A1675DFF000ADC02E /* RCNote.m in Sources */,
-				96FF818B1675DFF000ADC02E /* RCPhoto.m in Sources */,
 				96FF818C1675DFF000ADC02E /* RCReply.m in Sources */,
-				96FF818D1675DFF000ADC02E /* RCSection.m in Sources */,
 				96FF818E1675DFF000ADC02E /* RCTopic.m in Sources */,
 				96FF818F1675DFF000ADC02E /* RCUser.m in Sources */,
-				96FF81AE1675EDAF00ADC02E /* NSRRequest+Extend.m in Sources */,
-				96FF81B41675EFA000ADC02E /* RCRemoteObject.m in Sources */,
 				96FF81B81675F6C700ADC02E /* RCTopicTableViewCell.m in Sources */,
 				9694364C16762DD100F1E1A9 /* RCTableView.m in Sources */,
 				9694365A1676326B00F1E1A9 /* RCViewController.m in Sources */,
@@ -548,8 +529,9 @@
 				96CC60CD167F0FB100B7EB58 /* RCLoginForm.m in Sources */,
 				96CC60D7167F114300B7EB58 /* RCLoginViewController.m in Sources */,
 				9609EFA2167F2665005B4E90 /* RCNewTopicViewController.m in Sources */,
-				9609EFA5167F2884005B4E90 /* RCTopicForm.m in Sources */,
 				96EFA997167F63FD008FAB7A /* RCNodeSelectViewController.m in Sources */,
+				96EFA9A5167F7A22008FAB7A /* NSData+Base64.m in Sources */,
+				96EFA9A8167F7A7C008FAB7A /* RCBaseModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

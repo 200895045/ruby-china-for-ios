@@ -37,12 +37,13 @@ static RCTopicViewController *sharedInstance;
 - (void) loadRemoteInfo:(RCTopic *) aTopic {
     [hud show:YES];
     [self setupBlankWebView];
-    [RCTopic remoteObjectWithID:aTopic.remoteID async:^(id object, NSError *error) {
-        topic = object;
-        [self setupWebView];
-        [hud hide:YES];
-    }];
-    
+    [RCTopic findById:aTopic.ID async:^(id object, NSError *error) {
+        if (!error) {
+            topic = object;
+            [self setupWebView];
+            [hud hide:YES];
+        }
+    }];   
     
 }
 
@@ -112,7 +113,7 @@ static RCTopicViewController *sharedInstance;
             NSNumber *floor = [NSNumber numberWithInt:(i + 1)];
             
             replyHtml = [self replaceHtml:replyHtml forKey:@"floor" value:floor];
-            replyHtml = [self replaceHtml:replyHtml forKey:@"reply.id" value:reply.remoteID];
+            replyHtml = [self replaceHtml:replyHtml forKey:@"reply.id" value:[NSNumber numberWithInt:reply.ID]];
             replyHtml = [self replaceHtml:replyHtml forKey:@"reply.user_login" value:reply.user.login];
             replyHtml = [self replaceHtml:replyHtml forKey:@"reply.user_avatar_url" value:reply.user.avatarUrl];
             replyHtml = [self replaceHtml:replyHtml forKey:@"reply.created_at" value:[reply.createdAt timeAgo]];

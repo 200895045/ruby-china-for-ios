@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RCTopicForm.h"
 #import <MBProgressHUD.h>
 
 @class RCNode;

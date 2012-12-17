@@ -32,11 +32,14 @@ static RCNodeSelectViewController *_shared;
     self.view.frame = CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height - 100);
 
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [RCNode remoteAllAsync:^(NSArray *allRemote, NSError *error) {
-        nodes = allRemote;
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        [self.tableView reloadData];
+    [RCNode findAll:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            nodes = objects;
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            [self.tableView reloadData];
+        }
     }];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

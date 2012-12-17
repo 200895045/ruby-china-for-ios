@@ -6,16 +6,16 @@
 //  Copyright (c) 2012 jason. All rights reserved.
 //
 
-#import "RCRemoteObject.h"
+
+#import "RCBaseModel.h"
 
 @class RCUser;
 @class RCTopic;
 
-@interface RCReply : RCRemoteObject
+@interface RCReply : RCBaseModel
 
 @property (nonatomic, strong) RCUser *user;
-@property (nonatomic, strong) RCTopic *topic;
 @property (nonatomic, strong) NSString *body, *bodyHtml;
-@property (nonatomic, strong) NSDate *createdAt, *updatedAt;
+@property (nonatomic, strong) NSNumber *topicId;
 
 @end

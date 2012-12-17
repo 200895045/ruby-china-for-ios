@@ -12,12 +12,7 @@
 #import "RCTopic.h"
 
 @implementation RCReply
-@synthesize user, topic, body, bodyHtml, createdAt, updatedAt;
+@synthesize user, topicId, body, bodyHtml;
 
-
-- (BOOL) shouldOnlySendIDKeyForNestedObjectProperty:(NSString *)property
-{
-    return ([property isEqualToString:@"user"] || [property isEqualToString:@"topic"]);
-}
 
 @end

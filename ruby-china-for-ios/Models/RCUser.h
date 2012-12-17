@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 jason. All rights reserved.
 //
 
-#import "RCRemoteObject.h"
+#import "RCBaseModel.h"
 
 @class RCTopic;
 @class RCNote;
@@ -14,9 +14,8 @@
 @class RCPhoto;
 @class RCNode;
 
-@interface RCUser : RCRemoteObject
+@interface RCUser : RCBaseModel
 
-@property (nonatomic, strong) NSMutableArray *topics, *notes, *replies, *notifications, *photos;
 @property (nonatomic, strong) NSString *login,*email, *name, *location,*company, *twitter, *bio, *website, *avatarUrl,*tagline;
 @property (nonatomic, assign) BOOL emailPublic;
 

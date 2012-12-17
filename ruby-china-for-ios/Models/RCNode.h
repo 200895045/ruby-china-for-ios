@@ -6,15 +6,13 @@
 //  Copyright (c) 2012 jason. All rights reserved.
 //
 
-#import "RCRemoteObject.h"
+#import "RCBaseModel.h"
 
-@class RCTopic;
 @class RCSection;
 @class RCUser;
 
-@interface RCNode : RCRemoteObject
+@interface RCNode : RCBaseModel
 
-@property (nonatomic, strong) NSMutableArray *topics;
 @property (nonatomic, strong) RCSection *section;
 @property (nonatomic, strong) RCUser *followers;
 @property (nonatomic, strong) NSString *name, *summary;

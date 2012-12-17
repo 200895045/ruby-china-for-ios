@@ -6,19 +6,19 @@
 //  Copyright (c) 2012 jason. All rights reserved.
 //
 
-#import "RCRemoteObject.h"
+#import "RCBaseModel.h"
 
 @class RCUser;
 @class RCNode;
 @class RCReply;
 
-@interface RCTopic : RCRemoteObject
+@interface RCTopic : RCBaseModel
 
 @property (nonatomic, strong) RCUser *user;
 @property (nonatomic, strong) RCNode *node;
 @property (nonatomic, strong) NSMutableArray *replies;
 @property (nonatomic, strong) NSString *title, *body, *bodyHtml, *nodeName, *lastReplyUserLogin;
 @property (nonatomic, strong) NSNumber *repliesCount, *lastReplyUserId, *nodeId, *hits;
-@property (nonatomic, strong) NSDate *repliedAt, *createdAt, *updatedAt;
+@property (nonatomic, strong) NSDate *repliedAt;
 
 @end

@@ -5,12 +5,11 @@
 //  Created by NSRails autogen on 12/10/2012.
 //  Copyright (c) 2012 jason. All rights reserved.
 //
-
-#import "RCRemoteObject.h"
+#import "RCBaseModel.h"
 
 @class RCUser;
 
-@interface RCNote : RCRemoteObject
+@interface RCNote : RCBaseModel
 
 @property (nonatomic, strong) RCUser *user;
 @property (nonatomic, strong) NSString *title, *body;

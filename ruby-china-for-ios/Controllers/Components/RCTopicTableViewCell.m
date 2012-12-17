@@ -35,7 +35,7 @@
 }
 
 - (id) initWithTopic: (RCTopic *) aTopic forDetail:(BOOL)isForDetail {
-    self = [super initWithStyle:UITableViewCellSelectionStyleGray reuseIdentifier:[NSString stringWithFormat:@"topic-%d", [aTopic.remoteID intValue]]];
+    self = [super initWithStyle:UITableViewCellSelectionStyleGray reuseIdentifier:[NSString stringWithFormat:@"topic-%d", aTopic.ID]];
 
     topic = aTopic;
     
