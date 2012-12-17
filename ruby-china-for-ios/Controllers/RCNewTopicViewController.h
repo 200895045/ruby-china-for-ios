@@ -8,11 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "RCTopicForm.h"
+#import <MBProgressHUD.h>
 
-@interface RCNewTopicViewController : UITableViewController {
-    RCTopicForm *topicForm;
+@class RCNode;
+
+@interface RCNewTopicViewController : UIViewController {
+    IBOutlet UITextView *titleTextView;
+    IBOutlet UITextView *bodyTextView;
+    
+    IBOutlet UIButton *nodeButton;
+    
+    UIPickerView *pickerView;
+    RCNode *selectedNode;
 }
 
 + (RCNewTopicViewController *) shared;
+
+- (IBAction)nodeButtonClick:(id)sender;
+- (IBAction)photoButtonClick:(id)sender;
 
 @end

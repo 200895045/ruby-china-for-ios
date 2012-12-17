@@ -33,6 +33,14 @@
 {
     [super viewDidLoad];
     
+    // 检查登录
+    if (![RCUser currentUser]) {
+        RCLoginViewController *loginControlelr = [[RCLoginViewController alloc] init];
+        [self presentViewController:loginControlelr animated:YES completion:^{
+            //
+        }];
+    }
+    
     pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:tableView delegate:self];
     SSPullToRefreshDefaultContentView *contentView = (SSPullToRefreshDefaultContentView *)pullToRefreshView.contentView;
     contentView.statusLabel.textColor = [UIColor grayColor];
@@ -57,10 +65,7 @@
     
     navbar.topItem.title = @"社区";
     
-    if (![RCUser currentUser]) {
-        RCLoginViewController *loginControlelr = [[RCLoginViewController alloc] init];
-        [self.navigationController pushViewController:loginControlelr animated:YES];
-    }
+    
     
 	// Do any additional setup after loading the view, typically from a nib.
     [self refresh];
@@ -133,6 +138,7 @@
     RCTopic *topic = [topics objectAtIndex:indexPath.row];
     
     [[RCTopicViewController sharedInstance] setTopic:topic];
+    
     [self.navigationController pushViewController:[RCTopicViewController sharedInstance] animated:YES];
     
 }

@@ -11,6 +11,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "RCAll.h"
 #endif
 
 #ifdef DEBUG
@@ -19,4 +20,4 @@
 #define kAppDomain @"ruby-china.org"
 #endif
 
-#define kApiURL [NSString stringWithFormat:@"http://%@/api/",kAppDomain]
+#define kApiURL [NSString stringWithFormat:@"http://%@/api/v2/",kAppDomain]

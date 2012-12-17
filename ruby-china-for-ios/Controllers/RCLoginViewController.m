@@ -122,7 +122,9 @@
     [hud hide:YES];
     if (success) {
         hud.labelText = @"登录成功";
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:^{
+            //
+        }];
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登录" message:@"用户或密码错误，请重试。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];

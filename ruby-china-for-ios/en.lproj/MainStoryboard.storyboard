@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fFC-Jr-qJp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fFC-Jr-qJp">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -11,10 +11,10 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" alpha="0.80000000000000004" contentMode="top" barStyle="blackOpaque" id="kso-3n-e9T" customClass="RCNavigationBar">
+                    <navigationBar key="navigationBar" contentMode="top" id="kso-3n-e9T" customClass="RCNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.65738407258064513" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.03830645161" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="ucj-eH-FSd">
                         <rect key="frame" x="0.0" y="524" width="320" height="44"/>
@@ -97,8 +97,107 @@
             </objects>
             <point key="canvasLocation" x="-130" y="1024"/>
         </scene>
+        <!--New Topic View Controller - 查看话题-->
+        <scene sceneID="lnf-s5-NKJ">
+            <objects>
+                <viewController storyboardIdentifier="RCNewTopicViewController" title="查看话题" modalTransitionStyle="flipHorizontal" id="vBf-c4-9tb" customClass="RCNewTopicViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RtD-qK-YFB">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" text="Title" translatesAutoresizingMaskIntoConstraints="NO" id="tdT-U2-XW0">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="309" id="mex-NK-qwr"/>
+                                    <constraint firstAttribute="height" constant="32" id="qBP-kp-JZd"/>
+                                </constraints>
+                                <color key="textColor" white="0.23160282260000001" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" text="Body" translatesAutoresizingMaskIntoConstraints="NO" id="RaX-v4-uk8">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="163" id="Yva-mF-nea"/>
+                                </constraints>
+                                <color key="textColor" white="0.23160282260000001" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aul-ZV-Ojl">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="EN8-FF-wJ0"/>
+                                    <constraint firstAttribute="width" constant="21" id="quF-8B-mGn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <state key="normal" image="editor_image_icon.png">
+                                    <color key="titleColor" white="0.23160282260000001" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="photoButtonClick:" destination="vBf-c4-9tb" eventType="touchUpInside" id="hfl-R1-W33"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4g-W9-SQ6">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="hfp-j0-OWm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="节点" image="editor_node_icon.png">
+                                    <color key="titleColor" white="0.23160282258064516" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="nodeButtonClick:" destination="vBf-c4-9tb" eventType="touchUpInside" id="wrv-w4-3bc"/>
+                                </connections>
+                            </button>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWl-Lf-QJp">
+                                <color key="backgroundColor" white="0.86290322580645173" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tdT-U2-XW0" firstAttribute="leading" secondItem="RaX-v4-uk8" secondAttribute="leading" type="default" id="1PU-5p-Vqg"/>
+                            <constraint firstItem="tdT-U2-XW0" firstAttribute="top" secondItem="RtD-qK-YFB" secondAttribute="top" constant="4" id="5Uc-qE-y1g"/>
+                            <constraint firstAttribute="trailing" secondItem="SWl-Lf-QJp" secondAttribute="trailing" constant="-6" id="66G-Dn-ger"/>
+                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="bottom" secondItem="aul-ZV-Ojl" secondAttribute="bottom" type="default" id="7Vg-jt-7zW"/>
+                            <constraint firstItem="tdT-U2-XW0" firstAttribute="trailing" secondItem="RaX-v4-uk8" secondAttribute="trailing" type="default" id="D2L-CM-HW0"/>
+                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="baseline" secondItem="aul-ZV-Ojl" secondAttribute="baseline" type="default" id="HLC-zm-Lmv"/>
+                            <constraint firstItem="tdT-U2-XW0" firstAttribute="centerX" secondItem="RtD-qK-YFB" secondAttribute="centerX" type="default" id="Lga-D6-7ef"/>
+                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="leading" secondItem="aul-ZV-Ojl" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="MBx-aF-eTD"/>
+                            <constraint firstItem="SWl-Lf-QJp" firstAttribute="leading" secondItem="RtD-qK-YFB" secondAttribute="leading" type="default" id="Ssq-6b-sH6"/>
+                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="top" secondItem="aul-ZV-Ojl" secondAttribute="top" type="default" id="VOt-gw-qca"/>
+                            <constraint firstAttribute="bottom" secondItem="SWl-Lf-QJp" secondAttribute="bottom" constant="467" id="Zrh-Xj-MUC"/>
+                            <constraint firstItem="SWl-Lf-QJp" firstAttribute="top" secondItem="RtD-qK-YFB" secondAttribute="top" constant="36" id="jch-zL-gzS"/>
+                            <constraint firstItem="RaX-v4-uk8" firstAttribute="top" secondItem="SWl-Lf-QJp" secondAttribute="top" type="default" id="ojW-bR-hyo"/>
+                            <constraint firstItem="aul-ZV-Ojl" firstAttribute="top" secondItem="RtD-qK-YFB" secondAttribute="top" constant="180" id="rVi-2S-ndi"/>
+                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="leading" secondItem="RtD-qK-YFB" secondAttribute="leading" constant="44" id="zfC-F6-mrG"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="bodyTextView" destination="RaX-v4-uk8" id="2t5-zi-Gmp"/>
+                        <outlet property="nodeButton" destination="i4g-W9-SQ6" id="6S6-Al-cFK"/>
+                        <outlet property="titleTextView" destination="tdT-U2-XW0" id="l84-1o-SN0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ad8-tY-1aV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="381" y="1058"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="editor_image_icon.png" width="16" height="16"/>
+        <image name="editor_node_icon.png" width="16" height="16"/>
         <image name="spechbubble_2_icon.png" width="16" height="16"/>
     </resources>
     <classes>
@@ -107,6 +206,16 @@
         </class>
         <class className="RCNavigationBar" superclassName="UINavigationBar">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RCNavigationBar.h"/>
+        </class>
+        <class className="RCNewTopicViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RCNewTopicViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="nodeButtonClick:"/>
+                <relationship kind="action" name="photoButtonClick:"/>
+                <relationship kind="outlet" name="bodyTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="nodeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="titleTextView" candidateClass="UITextView"/>
+            </relationships>
         </class>
         <class className="RCTableView" superclassName="UITableView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RCTableView.h"/>

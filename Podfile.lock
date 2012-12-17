@@ -24,16 +24,11 @@ PODS:
 DEPENDENCIES:
 - ASIHTTPRequest (= 1.8.1)
 - MBProgressHUD (~> 0.5)
-- NSRails (from `https://github.com/huacnlee/nsrails.git', branch `with_cocopods')
+- NSRails (= 2.0.1)
 - SDWebImage (~> 3.0)
 - SSPullToRefresh (~> 1.0.1)
 - SSToolkit (~> 1.0.2)
 - Survey (= 0.0.5)
-
-EXTERNAL SOURCES:
-  NSRails:
-    :git: https://github.com/huacnlee/nsrails.git
-    :branch: with_cocopods
 
 SPEC CHECKSUMS:
   ASIHTTPRequest: e606d2df58b0aace6c1cf1d39a08d3484f91324a
@@ -41,7 +36,7 @@ SPEC CHECKSUMS:
   ASIHTTPRequest/CloudFiles: e606d2df58b0aace6c1cf1d39a08d3484f91324a
   ASIHTTPRequest/S3: e606d2df58b0aace6c1cf1d39a08d3484f91324a
   MBProgressHUD: b23ee11c42253d6d804e8e0bfabdc334e8b2571f
-  NSRails: ca02b8858faddda7e57383571b56bb78ebf37d8e
+  NSRails: 6c628aa8f38fc8a1b480837c311107d9bc0f0890
   Reachability: 1c8584c5f26fa776695efef95caaa50402c94cfb
   SDWebImage: afa3965bcb37797ba4ecac49393897b99d1b4be7
   SDWebImage/Main: afa3965bcb37797ba4ecac49393897b99d1b4be7
