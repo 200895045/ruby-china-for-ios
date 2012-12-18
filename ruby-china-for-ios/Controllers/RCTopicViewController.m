@@ -7,6 +7,7 @@
 //
 
 #import "RCTopicViewController.h"
+#import "RCReplyViewController.h"
 #import "RCTopicTableViewCell.h"
 #import "RCAll.h"
 #import <MBProgressHUD.h>
@@ -54,10 +55,9 @@ static RCTopicViewController *sharedInstance;
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = @"载入中";
     
-    UINavigationBar *navBar = self.navigationController.navigationBar;
     
-    [navBar.backItem.backBarButtonItem setImage:[UIImage imageNamed:@"nav_back_icon"]];
-    [navBar.backItem.backBarButtonItem setStyle:UIBarButtonItemStyleDone];
+    UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithTitle:@"回复" style:UIBarButtonItemStylePlain target:self action:@selector(replyButtonClick:)];
+    self.navigationItem.rightBarButtonItem = replyButton;
     
     webView.backgroundColor = [UIColor clearColor];
     webView.scrollView.bounces = NO;
@@ -102,7 +102,6 @@ static RCTopicViewController *sharedInstance;
     html = [self replaceHtml:html forKey:@"_last_reply_info" value:lastReplyInfo];
     html = [self replaceHtml:html forKey:@"created_at" value:[topic.createdAt timeAgo]];
     html = [self replaceHtml:html forKey:@"hits" value:topic.hits];
-    html = [self replaceHtml:html forKey:@"replies_count" value:topic.repliesCount];
     
     NSMutableArray *replies = [NSMutableArray arrayWithCapacity:0];
     if (topic.replies.count > 0) {
@@ -113,7 +112,7 @@ static RCTopicViewController *sharedInstance;
             NSNumber *floor = [NSNumber numberWithInt:(i + 1)];
             
             replyHtml = [self replaceHtml:replyHtml forKey:@"floor" value:floor];
-            replyHtml = [self replaceHtml:replyHtml forKey:@"reply.id" value:[NSNumber numberWithInt:reply.ID]];
+            replyHtml = [self replaceHtml:replyHtml forKey:@"reply.id" value:reply.ID];
             replyHtml = [self replaceHtml:replyHtml forKey:@"reply.user_login" value:reply.user.login];
             replyHtml = [self replaceHtml:replyHtml forKey:@"reply.user_avatar_url" value:reply.user.avatarUrl];
             replyHtml = [self replaceHtml:replyHtml forKey:@"reply.created_at" value:[reply.createdAt timeAgo]];
@@ -122,6 +121,7 @@ static RCTopicViewController *sharedInstance;
             [replies addObject:replyHtml];
         }
         
+        repliesTemplate = [self replaceHtml:repliesTemplate forKey:@"replies_count" value:topic.repliesCount];
         repliesTemplate = [self replaceHtml:repliesTemplate forKey:@"replies_collection" value:[replies componentsJoinedByString:@"\n"]];
         html = [self replaceHtml:html forKey:@"_replies" value:repliesTemplate];
     }
@@ -174,6 +174,12 @@ static RCTopicViewController *sharedInstance;
             break;
     }
 
+}
+
+
+#pragma mark - Button Events
+- (void) replyButtonClick: (id) sender {
+    [self.navigationController pushViewController:[RCReplyViewController shared] animated:YES];
 }
 
 @end

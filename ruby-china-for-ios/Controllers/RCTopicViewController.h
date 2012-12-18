@@ -11,7 +11,7 @@
 @class RCTopic;
 @class MBProgressHUD;
 
-@interface RCTopicViewController : RCViewController <UIWebViewDelegate, UIScrollViewDelegate>  {
+@interface RCTopicViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>  {
     RCTopic *topic;
     IBOutlet UIWebView *webView;
     MBProgressHUD *hud;
