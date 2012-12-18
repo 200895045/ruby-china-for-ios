@@ -34,12 +34,12 @@
     [super viewDidLoad];
     
     // 检查登录
-    if (![RCUser currentUser]) {
-        RCLoginViewController *loginControlelr = [[RCLoginViewController alloc] init];
-        [self presentViewController:loginControlelr animated:YES completion:^{
-            //
-        }];
-    }
+//    if (![RCUser currentUser]) {
+//        RCLoginViewController *loginControlelr = [[RCLoginViewController alloc] init];
+//        [self presentViewController:loginControlelr animated:YES completion:^{
+//            //
+//        }];
+//    }
     
     pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:tableView delegate:self];
     SSPullToRefreshDefaultContentView *contentView = (SSPullToRefreshDefaultContentView *)pullToRefreshView.contentView;

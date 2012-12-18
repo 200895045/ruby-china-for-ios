@@ -8,10 +8,11 @@
 
 #import "RCBaseModel.h"
 #import "NSString+ActiveSupportInflector.h"
+#import "RCPreferences.h"
 
 @implementation RCBaseModel
 
-@synthesize ID,createdAt,updatedAt;
+@synthesize ID,createdAt,updatedAt, errorMessage;
 
 + (NSString *) tableName {
     return [[[NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"RC" withString:@""] lowercaseString] pluralizeString];
@@ -22,7 +23,7 @@
 }
 
 + (void) findByStringId: (NSString *) aID async: (void (^)(id object, NSError *error)) async{
-    [[RKObjectManager sharedManager] getObjectsAtPath:[NSString stringWithFormat:@"%@/%@.json",[self tableName],aID]
+    [[RKObjectManager sharedManager] getObjectsAtPath:[NSString stringWithFormat:@"%@/%@",[self tableName],aID]
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   //
@@ -32,8 +33,9 @@
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   //
+                                                  NSLog(@"%@ findByStringId error: %@", [self tableName], error);
                                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                                      async(nil, error);
+                                                      async([error.userInfo objectForKey:RKObjectMapperErrorObjectsKey], error);
                                                   });
                                               }];
     
@@ -44,7 +46,7 @@
 }
 
 + (void) findWithPage: (int) page perPage:(int)perPage async: (void (^)(NSArray *objects, NSError *error)) async {
-    [[RKObjectManager sharedManager] getObjectsAtPath:[NSString stringWithFormat:@"%@.json",[self tableName]]
+    [[RKObjectManager sharedManager] getObjectsAtPath:[NSString stringWithFormat:@"%@",[self tableName]]
                                            parameters:@{ @"page" : [NSNumber numberWithInt:page], @"per_page" : [NSNumber numberWithInt:perPage] }
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   NSArray *result = [mappingResult array];
@@ -53,6 +55,7 @@
                                                   });
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                                  NSLog(@"%@ findWithPage error: %@", [self tableName], error);
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                       async(nil, error);
                                                   });
@@ -63,7 +66,7 @@
 
 + (void) create: (id) object async: (void (^)(id object, NSError *error)) async {
     [[RKObjectManager sharedManager] postObject:object
-                                           path:[NSString stringWithFormat:@"%@.json",[self tableName]]
+                                           path:[NSString stringWithFormat:@"%@",[self tableName]]
                                      parameters:nil
                                         success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                             dispatch_async(dispatch_get_main_queue(), ^{
@@ -71,7 +74,9 @@
                                             });
                                         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                             //
-                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                            dispatch_async(dispatch_get_main_queue(), ^{                                                
+                                                RKErrorMessage *errorMessage = [[[error userInfo] objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
+                                                NSLog(@"RKErrorMessage: %@ - %@", errorMessage, error);
                                                 async(nil, error);
                                             });
                                         }];

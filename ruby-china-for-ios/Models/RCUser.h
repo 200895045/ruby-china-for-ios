@@ -16,7 +16,7 @@
 
 @interface RCUser : RCBaseModel
 
-@property (nonatomic, strong) NSString *login,*email, *name, *location,*company, *twitter, *bio, *website, *avatarUrl,*tagline;
+@property (nonatomic, strong) NSString *login,*email, *name, *location,*company, *twitter, *bio, *website, *githubUrl, *avatarUrl,*tagline;
 @property (nonatomic, assign) BOOL emailPublic;
 
 

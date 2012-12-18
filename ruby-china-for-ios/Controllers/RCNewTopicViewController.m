@@ -74,24 +74,26 @@ static RCNewTopicViewController *_shared;
     RCTopic *topic = [[RCTopic alloc] init];
     topic.title = titleTextView.text;
     topic.body = bodyTextView.text;
-//    topic.node = [RCNodeSelectViewController shared].selectedNode;
-//    [topic remoteCreateAsync:^(NSError *error) {
-//        if (error) {
-//            NSString *errorMessage = @"";
-//            
-//            [NSString stringWithFormat:@"由于一些未知的原因，提交失败。错误代码: %d",error.code];
-//            
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"创建失败"
-//                                                            message:errorMessage
-//                                                           delegate:self
-//                                                  cancelButtonTitle:nil
-//                                                  otherButtonTitles:@"确定", nil];
-//            [alert show];
-//        }
-//        else {
-//            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//        }
-//    }];
+    topic.node = [RCNodeSelectViewController shared].selectedNode;
+    
+    [RCTopic create:topic async:^(id object, NSError *error) {
+        if (!error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        }
+        else {
+            NSString *errorMessage = @"";
+            
+            errorMessage = [NSString stringWithFormat:@"由于一些未知的原因，提交失败。错误代码: %d",error.code];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"创建失败"
+                                                            message:errorMessage
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:@"确定", nil];
+            [alert show];
+
+        }
+    }];
 }
 
 

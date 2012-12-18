@@ -12,6 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <RestKit.h>
+    #import "RKErrorMessage.h"
     #import "RCAll.h"
 #endif
 
@@ -21,4 +22,4 @@
 #define kAppDomain @"ruby-china.org"
 #endif
 
-#define kApiURL [NSString stringWithFormat:@"http://%@/api/v2/",kAppDomain]
+#define kApiURL [NSString stringWithFormat:@"http://%@/api/v2",kAppDomain]

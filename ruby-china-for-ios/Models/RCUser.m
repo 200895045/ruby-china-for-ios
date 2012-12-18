@@ -16,7 +16,7 @@
 static UIImage *defaultAvatarImage;
 
 @implementation RCUser
-@synthesize email, name, twitter, location, bio, website, avatarUrl, tagline, login;
+@synthesize email, name, twitter, location, bio, website, avatarUrl,githubUrl, tagline, login;
 
 static RCUser *_currentUser;
 
@@ -55,11 +55,14 @@ static RCUser *_currentUser;
         NSString *token = [jsonResponse objectForKey:@"private_token"];
         [RCPreferences setPrivateToken:[NSString stringWithFormat:@"%@1",token]];
         
-        [RCUser findByStringId:login async:^(id object, NSError *error) {
-            if (!error) {
+        [[[RKObjectManager sharedManager] HTTPClient] setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Token %@",token]];
+        
+        @synchronized(_currentUser) {
+            [RCUser findByStringId:login async:^(id object, NSError *error) {
                 _currentUser = object;
-            }
-        }];
+            }];
+        }
+        
         
         result = YES;
     }

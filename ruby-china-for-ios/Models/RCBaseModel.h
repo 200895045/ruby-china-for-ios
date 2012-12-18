@@ -13,9 +13,12 @@
 
 @property (nonatomic, assign) int ID;
 @property (nonatomic, strong) NSDate *createdAt,*updatedAt;
+@property (nonatomic, strong) NSString *errorMessage;
 
 + (NSString *) tableName;
+
 + (void) findById: (int) aID async: (void (^)(id object, NSError *error)) async;
++ (id) findByStringId: (NSString *) aID;
 + (void) findByStringId: (NSString *) aID async: (void (^)(id object, NSError *error)) async;
 + (void) findWithPage: (int) page perPage:(int)perPage async: (void (^)(NSArray *objects, NSError *error)) async;
 + (void) findAll: (void (^)(NSArray *objects, NSError *error)) async;
