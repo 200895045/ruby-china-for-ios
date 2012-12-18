@@ -74,7 +74,7 @@ static RCNewTopicViewController *_shared;
     RCTopic *topic = [[RCTopic alloc] init];
     topic.title = titleTextView.text;
     topic.body = bodyTextView.text;
-    topic.node = [RCNodeSelectViewController shared].selectedNode;
+    topic.nodeId = [RCNodeSelectViewController shared].selectedNode.ID;
     
     [RCTopic create:topic async:^(id object, NSError *error) {
         if (!error) {
@@ -83,7 +83,7 @@ static RCNewTopicViewController *_shared;
         else {
             NSString *errorMessage = @"";
             
-            errorMessage = [NSString stringWithFormat:@"由于一些未知的原因，提交失败。错误代码: %d",error.code];
+            errorMessage = [error localizedDescription];
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"创建失败"
                                                             message:errorMessage

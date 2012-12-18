@@ -18,8 +18,8 @@
     return [[[NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"RC" withString:@""] lowercaseString] pluralizeString];
 }
 
-+ (void) findById:(int)aID async:(void (^)(id, NSError *))async {
-    [self findByStringId:[NSString stringWithFormat:@"%d",aID] async:async];
++ (void) findById:(NSNumber *)aID async:(void (^)(id, NSError *))async {
+    [self findByStringId:[NSString stringWithFormat:@"%d",[aID integerValue]] async:async];
 }
 
 + (void) findByStringId: (NSString *) aID async: (void (^)(id object, NSError *error)) async{
@@ -75,8 +75,6 @@
                                         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                             //
                                             dispatch_async(dispatch_get_main_queue(), ^{                                                
-                                                RKErrorMessage *errorMessage = [[[error userInfo] objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
-                                                NSLog(@"RKErrorMessage: %@ - %@", errorMessage, error);
                                                 async(nil, error);
                                             });
                                         }];

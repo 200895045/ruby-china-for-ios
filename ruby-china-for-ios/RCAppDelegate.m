@@ -58,21 +58,11 @@
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
     RKObjectManager *manager = [[RKObjectManager alloc] initWithHTTPClient:client];
    
-    // Error
-    
-//    RKObjectMapping *errorMapping = [RKObjectMapping mappingForClass:[RKErrorMessage class]];
-//    [errorMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:@"" toKeyPath:@"message"]];
-//    RKResponseDescriptor *errorDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:errorMapping
-//                                                                                    pathPattern:nil
-//                                                                                        keyPath:nil
-//                                                                                    statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassClientError)];
-    
+
+    // Error 
     RKObjectMapping *errorMapping = [RKObjectMapping mappingForClass:[RKErrorMessage class]];
-    // The entire value at the source key path containing the errors maps to the message
     [errorMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:@"" toKeyPath:@"errorMessage"]];
-    
     NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassClientError);
-    // Any response in the 4xx status code range with an "errors" key path uses this mapping
     RKResponseDescriptor *errorDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:errorMapping pathPattern:nil keyPath:@"error" statusCodes:statusCodes];
 
     
@@ -154,7 +144,19 @@
                                                                                          keyPath:nil
                                                                                      statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
+    
     [manager addResponseDescriptorsFromArray:@[errorDescriptor, nodeDescriptor, userDescriptor, replyDescriptor, topicsDescripter, topicDescripter ]];
+    
+    
+    // MARK: Request Mapping
+    RKObjectMapping *topicSubmitMapping = [RKObjectMapping requestMapping];
+    [topicSubmitMapping addAttributeMappingsFromDictionary:@{
+     @"title" : @"title",
+     @"body" : @"body",
+     @"nodeId" : @"node_id"
+     }];
+    RKRequestDescriptor *topicRequestDescripter = [RKRequestDescriptor requestDescriptorWithMapping:topicSubmitMapping objectClass:[RCTopic class] rootKeyPath:nil];
+    [manager addRequestDescriptorsFromArray:@[ topicRequestDescripter ]];
 }
 
 
