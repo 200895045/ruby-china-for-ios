@@ -23,12 +23,14 @@
 #define kSubTextHighlightColor [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0000]
 #define kSubTextFontSize 12
 
-#define kBadgeColor [UIColor colorWithRed:0.1098 green:0.4980 blue:0.8588 alpha:1.0000]
+#define kBadgeColor [UIColor colorWithRed:0.4419 green:0.5471 blue:0.7736 alpha:0.8]
 #define kBadgeWidth 40
 
 #define kBackgroundHighlightColor [UIColor colorWithRed:0.9686 green:0.9490 blue:0.9882 alpha:1.0000]
 #define kBorderTopImage [UIImage imageNamed:@"tableview_cell_border_top.png"]
 #define kBorderBottomImage [UIImage imageNamed:@"tableview_cell_border_bottom.png"]
+#define kBackgroundImage [UIImage imageNamed:@"tableview_cell_bg.png"]
+#define kBackgroundHighlightImage [UIImage imageNamed:@"tableview_cell_bg_selected.png"]
 
 @implementation RCTopicTableViewCell
 
@@ -42,7 +44,8 @@
     topic = aTopic;
     
     if (self) {
-        self.selectionStyle = UITableViewCellSelectionStyleGray;
+//        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.selectedBackgroundView = [[UIImageView alloc] initWithImage:kBackgroundHighlightImage];
         
         avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 32, 32)];
         [avatarImageView setImageWithURL:[NSURL URLWithString:topic.user.avatarUrl] placeholderImage:[RCUser defaultAvatarImage]];
@@ -67,7 +70,8 @@
         CGSize nodeSize = [topic.nodeName sizeWithFont:[UIFont systemFontOfSize:kSubTextFontSize]
                                            constrainedToSize:CGSizeMake(MAXFLOAT, userNickHeight)];
 
-        nodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(userLabel.frame.origin.x + userLabel.frame.size.width + 6, userLabel.frame.origin.y  + 1, MAX(100,nodeSize.width), 14)];
+        nodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(userLabel.frame.origin.x + userLabel.frame.size.width + 6,
+                                                              userLabel.frame.origin.y, MAX(100,nodeSize.width), 14)];
         nodeLabel.text = topic.nodeName;
         nodeLabel.font = [UIFont systemFontOfSize:kSubTextFontSize];
         nodeLabel.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
@@ -91,7 +95,7 @@
                                      constrainedToSize:CGSizeMake(MAXFLOAT, userNickHeight)];
 
         timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(nodeLabel.frame.origin.x + nodeLabel.frame.size.width + 6,
-                                                              avatarImageView.frame.origin.y ,
+                                                              avatarImageView.frame.origin.y + 1,
                                                               MAX(65,timeSize.width),
                                                               18)];
         timeLabel.text = timeAgoText;
@@ -123,7 +127,7 @@
         badgeView.backgroundColor = [UIColor clearColor];
         badgeView.textLabel.font = [UIFont boldSystemFontOfSize:12.0f];
         badgeView.cornerRadius = 8;
-        badgeView.badgeColor = [UIColor colorWithRed:0.4419 green:0.5471 blue:0.7736 alpha:0.8]; // kBadgeColor;
+        badgeView.badgeColor = kBadgeColor;
         badgeView.highlightedBadgeColor = kBadgeColor;
         badgeView.textLabel.highlightedTextColor = [UIColor whiteColor];
         badgeView.badgeAlignment = SSBadgeViewAlignmentRight;
@@ -136,7 +140,7 @@
 - (void) drawRect:(CGRect)rect {
     [super drawRect:rect];
     [kBorderTopImage drawInRect:CGRectMake(0, 0, self.frame.size.width, 1)];
-    //    [kBackgrounImage drawInRect:CGRectMake(0, 1, self.frame.size.width, self.frame.size.height - 2)];
+    [kBackgroundImage drawInRect:CGRectMake(0, 1, self.frame.size.width, self.frame.size.height - 2)];
     [kBorderBottomImage drawInRect:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1)];
 }
 
