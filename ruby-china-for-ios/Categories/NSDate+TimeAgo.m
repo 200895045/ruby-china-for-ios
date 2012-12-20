@@ -10,22 +10,39 @@
 
 @implementation NSDate (TimeAgo)
 
-- (NSString *) timeAgo {
+- (NSString *)timeAgo {
+    return [self coverTimeToString:NO];
+}
+
+- (NSString *) shortTimeAgo {
+     return [self coverTimeToString:YES];
+}
+
+- (NSString *) coverTimeToString: (BOOL) isShort {
     NSString *dateString;
     
-    NSLog(@"timeAgo date: %@", self);
     
     // handle future date cases
     int days = [self daysFromNow];
     if (days > 200) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"yyyy-MM-dd";
-        dateString = [formatter stringFromDate:self];
+        if (isShort) {
+            dateString = [NSString stringWithFormat:@"%dd",days];
+        }
+        else {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"yyyy-MM-dd";
+            dateString = [formatter stringFromDate:self];
+        }
     }
     else if (days > 31) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"MM月dd日";
-        dateString = [formatter stringFromDate:self];
+        if (isShort) {
+            dateString = [NSString stringWithFormat:@"%dd",days];
+        }
+        else {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"MM月dd日";
+            dateString = [formatter stringFromDate:self];
+        }
     }
     else if (days == 0)  {
         if ([self hoursFromNow] == 0) {
@@ -33,30 +50,39 @@
             NSInteger minutes = [self minutesFromNow];
             
             if (minutes == 0) {
-                dateString = @"刚刚";
+                if (isShort) {
+                    dateString = @"Now";
+                }
+                else {
+                    dateString = @"刚刚";
+                }
             }
             else {
-                dateString = [NSString stringWithFormat: @"%d分钟前", minutes];
+                NSString *mark = isShort == YES ? @"m" : @"分钟前";
+                dateString = [NSString stringWithFormat: @"%d%@", minutes,mark];
             }
         }
         else {
             // else print hours
-            NSInteger hours = [self hoursFromNow];            
-            dateString = [NSString stringWithFormat: @"%d小时前", hours];
+            NSInteger hours = [self hoursFromNow];
+            NSString *mark = isShort == YES ? @"h" : @"分钟前";
+            dateString = [NSString stringWithFormat: @"%d%@", hours,mark];
         }
     }
     else if (days == 1) {
-        dateString = @"昨天";
+        dateString = isShort == YES ? @"1d" : @"昨天";
     }
     else if (days == 2) {
-        dateString = @"两天前";
+        dateString = isShort == YES ? @"2d" : @"两天前";
     }
     else {
-        dateString = [NSString stringWithFormat: @"%d天前", days];
+        NSString *mark = isShort == YES ? @"d" : @"两天前";
+        dateString = [NSString stringWithFormat: @"%d%@", days,mark];
     }
     
     return dateString;
 }
+
 
 
 -(NSInteger) minutesFromNow {

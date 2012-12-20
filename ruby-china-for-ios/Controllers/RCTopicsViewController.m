@@ -119,14 +119,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    int titleWidth = self.view.frame.size.width - 30 - 40;
+    int titleWidth = self.view.frame.size.width - 32 - 40 - 40;
     RCTopic *topic = [topics objectAtIndex:indexPath.row];
     NSString *titleString = topic.title;
-	NSString *detailString = topic.nodeName;
-	CGSize titleSize = [titleString sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(titleWidth, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
-	CGSize detailSize = [detailString sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(titleWidth, MAXFLOAT) lineBreakMode:NSLineBreakByTruncatingTail];
+	CGSize titleSize = [titleString sizeWithFont:[UIFont systemFontOfSize:14]
+                               constrainedToSize:CGSizeMake(titleWidth, MAXFLOAT)
+                                   lineBreakMode:NSLineBreakByCharWrapping];
+
     
-	return MAX(50, detailSize.height + 20 + titleSize.height);
+	return MAX(50, 14 + 20 + titleSize.height);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView

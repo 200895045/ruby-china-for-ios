@@ -14,7 +14,9 @@
 @interface RCTopicTableViewCell : UITableViewCell <UITextFieldDelegate> {
     UIImageView *avatarImageView;
     UILabel *titleLabel;
-    UILabel *infoLabel;
+    UILabel *userLabel;
+    UILabel *nodeLabel;
+    UILabel *timeLabel;
     UILabel *counterLabel;
     UILabel *bodyLabel;
     SSBadgeView *badgeView;
