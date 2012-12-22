@@ -9,7 +9,7 @@
 #import <Survey/SurveyFormModel.h>
 #import <Survey/SurveyField.h>
 
-@interface RCLoginForm : SurveyFormModel {
+@interface RCLoginForm : SurveyFormModel <UITextFieldDelegate> {
     
 }
 

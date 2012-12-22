@@ -23,3 +23,19 @@
 #endif
 
 #define kApiURL [NSString stringWithFormat:@"http://%@/api/v2",kAppDomain]
+
+
+#define kBlueColor [UIColor colorWithRed:0.0667 green:0.4353 blue:0.8157 alpha:1.0000]
+#define kGreenColor [UIColor colorWithRed:0.3333 green:0.6784 blue:0.3373 alpha:1.0000]
+#define kRedColor [UIColor colorWithRed:0.8157 green:0.2784 blue:0.2549 alpha:1.0000]
+#define kBlackColor [UIColor colorWithRed:0.1490 green:0.1490 blue:0.1490 alpha:1.0000]
+
+#define kButtonTextColor [UIColor colorWithRed:255 green:255 blue:255 alpha:1]
+#define kButtonTextHighlightColor [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5]
+#define kButtonRedius 3.0f
+
+#define kBoxShadowColor [UIColor colorWithRed:0 green:0 blue:0 alpha:0.95]
+#define kBoxRedius 6.0f
+
+
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)

@@ -28,6 +28,12 @@ static RCNewTopicViewController *_shared;
     [super viewDidLoad];
     
     self.title = @"发布帖子";
+    
+    titleTextView.text = @"";
+    titleTextView.placeholders = @"标题";
+    
+    bodyTextView.text = @"";
+    bodyTextView.placeholders = @"正文";
 
     nodeButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
     [nodeButton.titleLabel setFont:[UIFont systemFontOfSize:11]];

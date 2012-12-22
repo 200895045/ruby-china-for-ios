@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MBProgressHUD.h>
+#import "RCTextView.h"
 
 @class RCNode;
 
 @interface RCNewTopicViewController : UIViewController {
-    IBOutlet UITextView *titleTextView;
-    IBOutlet UITextView *bodyTextView;
+    IBOutlet RCTextView *titleTextView;
+    IBOutlet RCTextView *bodyTextView;
     
     IBOutlet UIButton *nodeButton;
     

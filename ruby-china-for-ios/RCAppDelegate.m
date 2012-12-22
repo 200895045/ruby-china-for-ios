@@ -22,6 +22,8 @@
     [self mapObjects];
     
     [RCUser checkLogin];
+    
+    
 
     return YES;
 }

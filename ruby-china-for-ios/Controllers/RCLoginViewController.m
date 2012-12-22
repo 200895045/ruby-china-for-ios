@@ -9,20 +9,29 @@
 #import "RCLoginViewController.h"
 #import "RCLoginForm.h"
 #import "RCUser.h"
+#import "RCButton.h"
+#import "RCLinkButton.h"
+#import "RCBoxView.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface RCLoginViewController ()
+#define kLineColor [UIColor colorWithRed:0.9333 green:0.9333 blue:0.9333 alpha:1.0000]
 
-@end
+
 
 @implementation RCLoginViewController
 
+@synthesize tableView;
+
 - (id)init
 {
-    self = [super initWithStyle:UITableViewStyleGrouped];
+    self = [super init];
+//    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    
     if (self)
     {
-        //        _registerForm = [[WCRegisterForm alloc] init];
+        
         
         loginForm = [[RCLoginForm alloc] init];
     }
@@ -32,7 +41,48 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIImageView *bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
+    
+    [self.view addSubview:bgView];
+    
 
+    CGRect boxRect = CGRectMake(10, 10, self.view.bounds.size.width - 20, 220);
+    CGRect logoRect = CGRectMake(self.view.frame.size.width / 2 - 206 / 2, 10, 206, 43);
+    if (iPhone5) {
+        boxRect.size.height = 310;
+        logoRect = CGRectMake(self.view.frame.size.width / 2 - 206 / 2, 40, 206, 43);
+    }
+
+    
+    RCBoxView *boxView = [[RCBoxView alloc] initWithFrame:boxRect];
+    
+    [self.view addSubview:boxView];
+    
+    UIImageView *logoView = [[UIImageView alloc] initWithFrame:logoRect];
+    logoView.image = [UIImage imageNamed:@"text_logo"];
+    
+    [boxView addSubview:logoView];
+
+    CGRect tableViewRect = CGRectMake(20, 43, boxView.frame.size.width - 40, 170);
+    if (iPhone5) {
+        tableViewRect = CGRectMake(20, 93, boxView.frame.size.width - 40, 170);
+    }
+    
+    self.tableView = [[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.tableView setSeparatorColor:kLineColor];
+    self.tableView.bounces = NO;
+    self.tableView.backgroundView.layer.masksToBounds = YES;
+
+    
+    [boxView addSubview:self.tableView];
+    
+    
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -61,16 +111,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.restorationIdentifier = CellIdentifier;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
     }
     
     UITextField *field              = [loginForm.fields objectAtIndex:indexPath.row];
-    field.frame                     = CGRectInset(cell.bounds, 30.0f, 5.0f);
+    field.frame                     = CGRectInset(cell.bounds, 10.0f, 5.0f);
     field.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;
+    
+    if (indexPath.row == 0) {
+        [field becomeFirstResponder];
+    }
     
     [cell addSubview:field];
     
@@ -82,24 +138,27 @@
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectZero];
     footerView.backgroundColor = [UIColor clearColor];
     
-    UIButton *submit            = [UIButton buttonWithType:UIButtonTypeCustom];
-    submit.frame                = CGRectMake(10.0f, 10.0f, self.tableView.bounds.size.width - 20.0f, 40.0f);
-    submit.clipsToBounds        = YES;
-    submit.titleLabel.font      = [UIFont systemFontOfSize:22.0f];
-    submit.backgroundColor      = [UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:0.5];
-//////    submit.layer.cornerRadius   = 5.0f;
-////    submit.layer.borderColor    = [UIColor darkGrayColor].CGColor;
-//    submit.layer.borderWidth    = 1.0f;
+        
+    RCButton *submitButton            = [[RCButton alloc] initWithFrame:CGRectMake(10.0f, 20.0f, 110, 35.0f) withColor:RCButtonColorRed];
+    [submitButton setTitle:@"登录" forState:UIControlStateNormal];
+    [submitButton addTarget:self action:@selector(submitButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:submitButton];
     
-    [submit setTitle:@"登录" forState:UIControlStateNormal];
-    [submit setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [submit addTarget:self action:@selector(submitClick:) forControlEvents:UIControlEventTouchUpInside];
+    RCButton *registButton            = [[RCButton alloc] initWithFrame:CGRectMake(self.tableView.frame.size.width - 120, 20.0f, 110, 35.0f) withColor:RCButtonColorBlack];
+    [registButton setTitle:@"注册" forState:UIControlStateNormal];
+    [registButton addTarget:self action:@selector(registerButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:registButton];
     
-    [footerView addSubview:submit];
+    RCLinkButton *forgetPasswordButton = [[RCLinkButton alloc] initWithFrame:CGRectMake(10, 30 + submitButton.frame.size.height , 80, 20) withTitle:@"忘记了密码?"];
+    [forgetPasswordButton addTarget:self action:@selector(forgetPasswordButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:forgetPasswordButton];
     
     return footerView;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 40.0f;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 60.0f;
@@ -107,7 +166,7 @@
 
 
 #pragma mark - Button Event
-- (void) submitClick: (id) sender {
+- (void) submitButtonClick: (id) sender {
     if (!loginForm.isValid) {
         return;
     }
@@ -131,4 +190,14 @@
         [alert show];
     }
 }
+
+- (void) registerButtonClick: (id) sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://ruby-china.org/account/sign_up"]];
+}
+
+- (void) forgetPasswordButtonClick: (id) sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://ruby-china.org/account/password/new"]];
+}
+
+
 @end

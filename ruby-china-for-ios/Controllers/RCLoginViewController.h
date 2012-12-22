@@ -11,9 +11,11 @@
 
 @class MBProgressHUD;
 
-@interface RCLoginViewController : UITableViewController {
+@interface RCLoginViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     RCLoginForm *loginForm;
     MBProgressHUD *hud;
 }
+
+@property (nonatomic, strong) UITableView *tableView;
 
 @end

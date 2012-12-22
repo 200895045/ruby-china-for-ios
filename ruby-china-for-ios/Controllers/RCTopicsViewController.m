@@ -33,13 +33,7 @@
 {
     [super viewDidLoad];
     
-    // 检查登录
-//    if (![RCUser currentUser]) {
-//        RCLoginViewController *loginControlelr = [[RCLoginViewController alloc] init];
-//        [self presentViewController:loginControlelr animated:YES completion:^{
-//            //
-//        }];
-//    }
+    [self requireLogin];
     
     pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:tableView delegate:self];
     SSPullToRefreshDefaultContentView *contentView = (SSPullToRefreshDefaultContentView *)pullToRefreshView.contentView;
@@ -81,6 +75,16 @@
 
 
 #pragma mark - 基础方法
+- (void) requireLogin {
+    // 检查登录
+    if (![RCUser currentUser]) {
+        RCLoginViewController *loginControlelr = [[RCLoginViewController alloc] init];
+        [self presentViewController:loginControlelr animated:YES completion:^{
+            //
+        }];
+    }
+}
+
 - (void) refreshButtonClick {
     [pullToRefreshView startLoadingAndExpand:YES];
 }
