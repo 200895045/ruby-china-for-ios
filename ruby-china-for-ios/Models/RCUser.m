@@ -21,7 +21,7 @@ static UIImage *defaultAvatarImage;
 static RCUser *_currentUser;
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"RCUser: <ID: %d>",self.ID];
+    return [NSString stringWithFormat:@"RCUser: <ID: %d>",[self.ID intValue]];
 }
 
 + (UIImage *) defaultAvatarImage {
@@ -57,11 +57,10 @@ static RCUser *_currentUser;
         
         [[[RKObjectManager sharedManager] HTTPClient] setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Token %@",token]];
         
-        @synchronized(_currentUser) {
-            [RCUser findByStringId:login async:^(id object, NSError *error) {
-                _currentUser = object;
-            }];
-        }
+        // TODO: 需要用同步的方式查询 User
+        [RCUser findByStringId:login async:^(id object, NSError *error) {
+            _currentUser = object;
+        }];
         
         
         result = YES;

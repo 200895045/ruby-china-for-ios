@@ -23,8 +23,6 @@
     
     [RCUser checkLogin];
     
-    
-
     return YES;
 }
 
