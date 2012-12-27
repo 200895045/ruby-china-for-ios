@@ -9,11 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "RCLoginForm.h"
 
-@class MBProgressHUD;
-
 @interface RCLoginViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     RCLoginForm *loginForm;
-    MBProgressHUD *hud;
 }
 
 @property (nonatomic, strong) UITableView *tableView;

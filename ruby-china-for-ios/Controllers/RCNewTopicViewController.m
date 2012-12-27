@@ -10,6 +10,9 @@
 #import "RCNodeSelectViewController.h"
 #import "RCViewController.h"
 #import "RCTableView.h"
+#import "RCPreferences.h"
+#import <ASIFormDataRequest.h>
+#import "RCTopicViewController.h"
 
 @implementation RCNewTopicViewController
 
@@ -71,12 +74,54 @@ static RCNewTopicViewController *_shared;
 }
 
 - (IBAction)photoButtonClick:(id)sender {
-    NSLog(@"photoButtonClick");
+    if (!imagePicker) {
+        imagePicker =[[UIImagePickerController alloc] init];
+    }
+    
+    imagePicker.delegate = self;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    [SVProgressHUD showWithStatus:@"上传中"];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/photos.json?token=%@",kApiURL,[RCPreferences privateToken]]];
+    ASIFormDataRequest *req = [[ASIFormDataRequest alloc] initWithURL:url];
+    NSData *imageData = UIImageJPEGRepresentation(image,99);
+    [req appendPostData:imageData];
+    [req setData:imageData withFileName:[NSString stringWithFormat:@"%@.jpg",[NSDate date]] andContentType:@"image/jpeg" forKey:@"Filedata"];
+
+    req.delegate = self;
+
+    [req startAsynchronous];    
+}
+
+
+- (void)requestFinished:(ASIHTTPRequest *)request {
+    [bodyTextView insertText:[NSString stringWithFormat:@"![](%@)\n",[request responseString]]];
+    [bodyTextView becomeFirstResponder];
+
+    [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"上传失败"
+                                                    message:@"由于某些原因，图片上传失败了，请稍后再试。"
+                                                   delegate:self
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:@"确定", nil];
+    [alert show];
+    [SVProgressHUD dismiss];
 }
 
 - (IBAction)submitButtonClick:(id)sender {
-    MBProgressHUD *hud = [MBProgressHUD HUDForView:self.view];
-    [hud show:YES];
+    [SVProgressHUD showWithStatus:@"提交中"];
     RCTopic *topic = [[RCTopic alloc] init];
     topic.title = titleTextView.text;
     topic.body = bodyTextView.text;
@@ -84,9 +129,15 @@ static RCNewTopicViewController *_shared;
     
     [RCTopic create:topic async:^(id object, NSError *error) {
         if (!error) {
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [SVProgressHUD showSuccessWithStatus:@"发布成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+            [[RCTopicViewController sharedInstance] setTopic:object];
+            [self presentViewController:[RCTopicViewController sharedInstance] animated:YES completion:nil];
+            [self dismissViewControllerAnimated:NO completion:nil];
         }
         else {
+            [SVProgressHUD dismiss];
             NSString *errorMessage = @"";
             
             errorMessage = [error localizedDescription];
@@ -100,6 +151,10 @@ static RCNewTopicViewController *_shared;
 
         }
     }];
+}
+
+- (IBAction)cancelButtonClick:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

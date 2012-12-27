@@ -44,18 +44,13 @@
     // MARK: UINavigationBar 设置
     UINavigationBar *navbar = self.navigationController.navigationBar;
     
-    // Toolbar
-    RCNavLeftRightButtonItem *rightButton = [[RCNavLeftRightButtonItem alloc] initWithNavBar:navbar
-                                                                                   leftRight:RCNavLeftRightButtonItemTypeRight
-                                                                             withButtonImage:[UIImage imageNamed:@"nav_new_icon"]
-                                                                                  withTarget:self
-                                                                                withSelector:@selector(newTopicButtonClick)];
+    UIBarButtonItem *newTopicButton = [[UIBarButtonItem alloc] initWithTitle:@"发帖"
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(newTopicButtonClick)];
     
-    RCNavLeftRightButtonItem *leftButton  = [[RCNavLeftRightButtonItem alloc] initWithNavBar:navbar
-                                                                                   leftRight:RCNavLeftRightButtonItemTypeLeft
-                                                                             withButtonImage:[UIImage imageNamed:@"nav_menu_icon"]
-                                                                                  withTarget:self
-                                                                                withSelector:@selector(refreshButtonClick)];
+    [navbar.topItem setRightBarButtonItem:newTopicButton];
+
     
     navbar.topItem.title = @"社区";
     
@@ -90,7 +85,8 @@
 }
 
 - (void) newTopicButtonClick {
-    [self.navigationController pushViewController:[RCNewTopicViewController shared] animated:YES];
+    [self.navigationController presentViewController:[RCNewTopicViewController shared] animated:YES completion:nil];
+//    [self.navigationController pushViewController:[RCNewTopicViewController shared] animated:YES];
 }
 
 - (void) refresh {
@@ -146,7 +142,7 @@
     
     [[RCTopicViewController sharedInstance] setTopic:topic];
     
-    [self.navigationController pushViewController:[RCTopicViewController sharedInstance] animated:YES];
+    [self presentViewController:[RCTopicViewController sharedInstance] animated:YES completion:nil];
     
 }
 @end

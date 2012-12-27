@@ -107,7 +107,7 @@
      }];
     [replyMapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:userMapping];
     RKResponseDescriptor *replyDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:replyMapping
-                                                                                    pathPattern:@"replies"
+                                                                                    pathPattern:@"topics/:id/replies"
                                                                                         keyPath:nil
                                                                                     statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
 
@@ -156,7 +156,17 @@
      @"nodeId" : @"node_id"
      }];
     RKRequestDescriptor *topicRequestDescripter = [RKRequestDescriptor requestDescriptorWithMapping:topicSubmitMapping objectClass:[RCTopic class] rootKeyPath:nil];
-    [manager addRequestDescriptorsFromArray:@[ topicRequestDescripter ]];
+    
+    RKObjectMapping *replySubmitMapping = [RKObjectMapping requestMapping];
+    [replySubmitMapping addAttributeMappingsFromDictionary:@{
+     @"topicId" : @"topic_id",
+     @"body" : @"body",
+     }];
+    RKRequestDescriptor *replyRequestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:replySubmitMapping
+                                                                                        objectClass:[RCReply class]
+                                                                                        rootKeyPath:nil];
+
+    [manager addRequestDescriptorsFromArray:@[ topicRequestDescripter, replyRequestDescriptor ]];
 }
 
 

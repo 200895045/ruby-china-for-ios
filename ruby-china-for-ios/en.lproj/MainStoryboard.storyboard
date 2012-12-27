@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fFC-Jr-qJp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fFC-Jr-qJp">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -9,12 +9,11 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="fFC-Jr-qJp" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="top" id="kso-3n-e9T" customClass="RCNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="0.03830645161" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="ucj-eH-FSd">
                         <rect key="frame" x="0.0" y="524" width="320" height="44"/>
@@ -66,9 +65,9 @@
         <!--Topic View Controller - 查看话题-->
         <scene sceneID="6iy-Mq-517">
             <objects>
-                <viewController storyboardIdentifier="RCTopicViewController" title="查看话题" modalTransitionStyle="flipHorizontal" id="Ict-Dp-uwZ" customClass="RCTopicViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RCTopicViewController" title="查看话题" id="Ict-Dp-uwZ" customClass="RCTopicViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="23e-lE-vYc">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bB2-28-A08">
@@ -78,17 +77,36 @@
                                     <outlet property="delegate" destination="Ict-Dp-uwZ" id="Cu0-if-8FJ"/>
                                 </connections>
                             </webView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TMz-7E-rPa">
+                                <items>
+                                    <navigationItem id="b4w-62-Qbw">
+                                        <barButtonItem key="leftBarButtonItem" title="关闭" id="hRw-Kp-xz2">
+                                            <connections>
+                                                <action selector="cancelButtonClick:" destination="Ict-Dp-uwZ" id="Fe5-HG-b8Q"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="回帖" style="plain" id="vqD-gG-BbE">
+                                            <connections>
+                                                <action selector="replyButtonClick:" destination="Ict-Dp-uwZ" id="wHi-E4-bC2"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bB2-28-A08" firstAttribute="trailing" secondItem="23e-lE-vYc" secondAttribute="trailing" type="default" id="0mr-U3-YMa"/>
-                            <constraint firstItem="bB2-28-A08" firstAttribute="bottom" secondItem="23e-lE-vYc" secondAttribute="bottom" type="default" id="HBK-An-IN7"/>
+                            <constraint firstItem="TMz-7E-rPa" firstAttribute="bottom" secondItem="bB2-28-A08" secondAttribute="top" type="default" id="GJq-F8-XNU"/>
+                            <constraint firstItem="bB2-28-A08" firstAttribute="bottom" secondItem="23e-lE-vYc" secondAttribute="bottom" type="default" id="TW1-mQ-qRq"/>
+                            <constraint firstItem="TMz-7E-rPa" firstAttribute="trailing" secondItem="23e-lE-vYc" secondAttribute="trailing" type="default" id="mHI-Af-vOL"/>
+                            <constraint firstItem="TMz-7E-rPa" firstAttribute="top" secondItem="23e-lE-vYc" secondAttribute="top" type="default" id="nuk-n6-YWM"/>
+                            <constraint firstItem="TMz-7E-rPa" firstAttribute="leading" secondItem="23e-lE-vYc" secondAttribute="leading" type="default" id="slx-iB-Vns"/>
                             <constraint firstItem="bB2-28-A08" firstAttribute="leading" secondItem="23e-lE-vYc" secondAttribute="leading" type="default" id="xJs-3e-xsA"/>
-                            <constraint firstItem="bB2-28-A08" firstAttribute="top" secondItem="23e-lE-vYc" secondAttribute="top" type="default" id="xdf-gF-XMW"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="webView" destination="bB2-28-A08" id="rQ8-p9-Mga"/>
                     </connections>
@@ -100,9 +118,9 @@
         <!--New Topic View Controller - 查看话题-->
         <scene sceneID="lnf-s5-NKJ">
             <objects>
-                <viewController storyboardIdentifier="RCNewTopicViewController" title="查看话题" modalTransitionStyle="flipHorizontal" id="vBf-c4-9tb" customClass="RCNewTopicViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RCNewTopicViewController" title="查看话题" id="vBf-c4-9tb" customClass="RCNewTopicViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RtD-qK-YFB">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" text="Title" translatesAutoresizingMaskIntoConstraints="NO" id="tdT-U2-XW0" customClass="RCTextView">
@@ -126,30 +144,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aul-ZV-Ojl">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4g-W9-SQ6">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="EN8-FF-wJ0"/>
-                                    <constraint firstAttribute="width" constant="21" id="quF-8B-mGn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                                <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                <state key="normal" image="editor_image_icon.png">
-                                    <color key="titleColor" white="0.23160282260000001" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="photoButtonClick:" destination="vBf-c4-9tb" eventType="touchUpInside" id="hfl-R1-W33"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4g-W9-SQ6">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="82" id="hfp-j0-OWm"/>
+                                    <constraint firstAttribute="width" constant="72" id="FGN-l7-qGf"/>
+                                    <constraint firstAttribute="height" constant="24" id="fuz-gE-Az5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="节点" image="editor_node_icon.png">
+                                <state key="normal" title="节点" image="tag_icon_black.png">
                                     <color key="titleColor" white="0.23160282258064516" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -163,28 +164,62 @@
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWl-Lf-QJp">
                                 <color key="backgroundColor" white="0.86290322580645173" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjN-Le-UjI">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="IV5-Oz-tT0"/>
+                                    <constraint firstAttribute="height" constant="18" id="zRE-hV-dRc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="picture_icon_black.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="photoButtonClick:" destination="vBf-c4-9tb" eventType="touchUpInside" id="VQ1-jH-KTA"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhA-Tt-6SL">
+                                <items>
+                                    <navigationItem title="发帖" id="pm4-pc-a6l">
+                                        <barButtonItem key="leftBarButtonItem" title="取消" id="LPY-0e-B4W">
+                                            <connections>
+                                                <action selector="cancelButtonClick:" destination="vBf-c4-9tb" id="ZzQ-Wu-tWV"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="提交" style="done" id="ppE-DV-HHk">
+                                            <connections>
+                                                <action selector="submitButtonClick:" destination="vBf-c4-9tb" id="rmH-ju-CXv"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="tdT-U2-XW0" firstAttribute="leading" secondItem="RaX-v4-uk8" secondAttribute="leading" type="default" id="1PU-5p-Vqg"/>
-                            <constraint firstItem="tdT-U2-XW0" firstAttribute="top" secondItem="RtD-qK-YFB" secondAttribute="top" constant="4" id="5Uc-qE-y1g"/>
+                            <constraint firstItem="vhA-Tt-6SL" firstAttribute="centerX" secondItem="tdT-U2-XW0" secondAttribute="centerX" type="default" id="1T9-cO-U9b"/>
                             <constraint firstAttribute="trailing" secondItem="SWl-Lf-QJp" secondAttribute="trailing" constant="-6" id="66G-Dn-ger"/>
-                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="bottom" secondItem="aul-ZV-Ojl" secondAttribute="bottom" type="default" id="7Vg-jt-7zW"/>
+                            <constraint firstItem="vhA-Tt-6SL" firstAttribute="trailing" secondItem="RtD-qK-YFB" secondAttribute="trailing" type="default" id="Cjl-cE-0G1"/>
                             <constraint firstItem="tdT-U2-XW0" firstAttribute="trailing" secondItem="RaX-v4-uk8" secondAttribute="trailing" type="default" id="D2L-CM-HW0"/>
-                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="baseline" secondItem="aul-ZV-Ojl" secondAttribute="baseline" type="default" id="HLC-zm-Lmv"/>
-                            <constraint firstItem="tdT-U2-XW0" firstAttribute="centerX" secondItem="RtD-qK-YFB" secondAttribute="centerX" type="default" id="Lga-D6-7ef"/>
-                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="leading" secondItem="aul-ZV-Ojl" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="MBx-aF-eTD"/>
+                            <constraint firstItem="RaX-v4-uk8" firstAttribute="top" secondItem="SWl-Lf-QJp" secondAttribute="top" type="default" id="RmA-NG-4Dk"/>
                             <constraint firstItem="SWl-Lf-QJp" firstAttribute="leading" secondItem="RtD-qK-YFB" secondAttribute="leading" type="default" id="Ssq-6b-sH6"/>
-                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="top" secondItem="aul-ZV-Ojl" secondAttribute="top" type="default" id="VOt-gw-qca"/>
-                            <constraint firstAttribute="bottom" secondItem="SWl-Lf-QJp" secondAttribute="bottom" constant="467" id="Zrh-Xj-MUC"/>
-                            <constraint firstItem="SWl-Lf-QJp" firstAttribute="top" secondItem="RtD-qK-YFB" secondAttribute="top" constant="36" id="jch-zL-gzS"/>
-                            <constraint firstItem="RaX-v4-uk8" firstAttribute="top" secondItem="SWl-Lf-QJp" secondAttribute="top" type="default" id="ojW-bR-hyo"/>
-                            <constraint firstItem="aul-ZV-Ojl" firstAttribute="top" secondItem="RtD-qK-YFB" secondAttribute="top" constant="180" id="rVi-2S-ndi"/>
-                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="leading" secondItem="RtD-qK-YFB" secondAttribute="leading" constant="44" id="zfC-F6-mrG"/>
+                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="top" secondItem="RtD-qK-YFB" secondAttribute="top" constant="246" id="UJa-Gp-9AS"/>
+                            <constraint firstItem="vhA-Tt-6SL" firstAttribute="leading" secondItem="RtD-qK-YFB" secondAttribute="leading" type="default" id="dbU-xx-gUl"/>
+                            <constraint firstItem="tdT-U2-XW0" firstAttribute="top" secondItem="RtD-qK-YFB" secondAttribute="top" constant="48" id="mLx-cW-fR1"/>
+                            <constraint firstItem="sjN-Le-UjI" firstAttribute="leading" secondItem="RtD-qK-YFB" secondAttribute="leading" constant="10" id="nJ6-ld-sjy"/>
+                            <constraint firstItem="tdT-U2-XW0" firstAttribute="bottom" secondItem="SWl-Lf-QJp" secondAttribute="bottom" type="default" id="qjM-kI-Xgr"/>
+                            <constraint firstItem="vhA-Tt-6SL" firstAttribute="top" secondItem="RtD-qK-YFB" secondAttribute="top" type="default" id="rUV-gU-wIp"/>
+                            <constraint firstItem="RaX-v4-uk8" firstAttribute="top" secondItem="RtD-qK-YFB" secondAttribute="top" constant="79" id="u5q-Lo-pXv"/>
+                            <constraint firstItem="i4g-W9-SQ6" firstAttribute="leading" secondItem="sjN-Le-UjI" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="vDc-ua-Dib"/>
+                            <constraint firstItem="sjN-Le-UjI" firstAttribute="top" secondItem="RtD-qK-YFB" secondAttribute="top" constant="248" id="zf8-gY-7KF"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="bodyTextView" destination="RaX-v4-uk8" id="2t5-zi-Gmp"/>
                         <outlet property="nodeButton" destination="i4g-W9-SQ6" id="6S6-Al-cFK"/>
@@ -198,12 +233,12 @@
         <!--Reply View Controller - 查看话题-->
         <scene sceneID="GzY-fJ-fgP">
             <objects>
-                <viewController storyboardIdentifier="RCReplyViewController" title="查看话题" modalTransitionStyle="flipHorizontal" id="hVH-Hp-Opf" customClass="RCReplyViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RCReplyViewController" title="查看话题" id="hVH-Hp-Opf" customClass="RCReplyViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EuE-2N-HQM">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" text="This is Body" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-Ma-u1v">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" text="This is Body" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-Ma-u1v" customClass="RCTextView">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="309" id="EKN-XF-QCU"/>
@@ -216,29 +251,51 @@
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRK-zr-rrZ">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="21" id="Ild-B3-1TM"/>
-                                    <constraint firstAttribute="height" constant="20" id="efu-Sg-t2s"/>
+                                    <constraint firstAttribute="height" constant="24" id="Pes-JY-UO2"/>
+                                    <constraint firstAttribute="width" constant="24" id="kki-aF-GUY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                                <state key="normal" image="editor_image_icon.png">
+                                <state key="normal" image="picture_icon_black.png">
                                     <color key="titleColor" white="0.23160282260000001" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="photoButtonClick:" destination="hVH-Hp-Opf" eventType="touchUpInside" id="y5p-q2-So5"/>
+                                </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0d-jd-jcx">
+                                <items>
+                                    <navigationItem title="回帖" id="LqU-rQ-iOP">
+                                        <barButtonItem key="leftBarButtonItem" title="取消" id="Y9P-ic-K0m">
+                                            <connections>
+                                                <action selector="cancelButtonClick:" destination="hVH-Hp-Opf" id="Yv4-PU-yfR"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="提交" style="done" id="FaK-9o-nEF">
+                                            <connections>
+                                                <action selector="submitButtonClick:" destination="hVH-Hp-Opf" id="9LR-LJ-fWm"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cRK-zr-rrZ" firstAttribute="bottom" secondItem="Myo-Ma-u1v" secondAttribute="bottom" type="default" id="0d9-rE-9uL"/>
-                            <constraint firstItem="Myo-Ma-u1v" firstAttribute="top" secondItem="EuE-2N-HQM" secondAttribute="top" constant="6" id="Dyd-O6-WJN"/>
-                            <constraint firstItem="cRK-zr-rrZ" firstAttribute="leading" secondItem="EuE-2N-HQM" secondAttribute="leading" constant="14" id="fgB-m2-Be2"/>
-                            <constraint firstItem="Myo-Ma-u1v" firstAttribute="centerX" secondItem="EuE-2N-HQM" secondAttribute="centerX" type="default" id="tZj-9m-lxO"/>
+                            <constraint firstItem="Myo-Ma-u1v" firstAttribute="top" secondItem="EuE-2N-HQM" secondAttribute="top" constant="48" id="19A-9L-qPh"/>
+                            <constraint firstItem="E0d-jd-jcx" firstAttribute="centerX" secondItem="Myo-Ma-u1v" secondAttribute="centerX" type="default" id="5G7-pS-1xy"/>
+                            <constraint firstItem="E0d-jd-jcx" firstAttribute="leading" secondItem="EuE-2N-HQM" secondAttribute="leading" type="default" id="O77-wl-zo7"/>
+                            <constraint firstItem="cRK-zr-rrZ" firstAttribute="leading" secondItem="EuE-2N-HQM" secondAttribute="leading" constant="13" id="OK8-Te-gXF"/>
+                            <constraint firstItem="E0d-jd-jcx" firstAttribute="top" secondItem="EuE-2N-HQM" secondAttribute="top" type="default" id="Qv8-kE-HM0"/>
+                            <constraint firstItem="cRK-zr-rrZ" firstAttribute="top" secondItem="EuE-2N-HQM" secondAttribute="top" constant="229" id="zRm-la-igR"/>
+                            <constraint firstItem="E0d-jd-jcx" firstAttribute="trailing" secondItem="EuE-2N-HQM" secondAttribute="trailing" type="default" id="zaB-Uw-7oq"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="bodyTextView" destination="Myo-Ma-u1v" id="0AY-cb-eNA"/>
                     </connections>
@@ -249,9 +306,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="editor_image_icon.png" width="16" height="16"/>
-        <image name="editor_node_icon.png" width="16" height="16"/>
+        <image name="picture_icon_black.png" width="16" height="16"/>
         <image name="spechbubble_2_icon.png" width="16" height="16"/>
+        <image name="tag_icon_black.png" width="16" height="16"/>
     </resources>
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
@@ -263,6 +320,7 @@
         <class className="RCNewTopicViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RCNewTopicViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancelButtonClick:"/>
                 <relationship kind="action" name="nodeButtonClick:"/>
                 <relationship kind="action" name="photoButtonClick:"/>
                 <relationship kind="outlet" name="bodyTextView" candidateClass="RCTextView"/>
@@ -273,7 +331,10 @@
         <class className="RCReplyViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RCReplyViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="bodyTextView" candidateClass="UITextView"/>
+                <relationship kind="action" name="cancelButtonClick:"/>
+                <relationship kind="action" name="photoButtonClick:"/>
+                <relationship kind="action" name="submitButtonClick:"/>
+                <relationship kind="outlet" name="bodyTextView" candidateClass="RCTextView"/>
             </relationships>
         </class>
         <class className="RCTableView" superclassName="UITableView">
@@ -285,6 +346,8 @@
         <class className="RCTopicViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RCTopicViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancelButtonClick:"/>
+                <relationship kind="action" name="replyButtonClick:"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>

@@ -14,7 +14,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
 //        self.backgroundColor = [UIColor darkGrayColor];
-        [self setBackgroundImage:[UIImage imageNamed:@"navbar_bg"] forBarMetrics:UIBarMetricsDefault];
+//        [self setBackgroundImage:[UIImage imageNamed:@"navbar_bg"] forBarMetrics:UIBarMetricsDefault];
     }
     return self;
 }

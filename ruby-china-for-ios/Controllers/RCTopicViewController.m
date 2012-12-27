@@ -10,7 +10,6 @@
 #import "RCReplyViewController.h"
 #import "RCTopicTableViewCell.h"
 #import "RCAll.h"
-#import <MBProgressHUD.h>
 #import "RCNavigationBar.h"
 #import "NSDate+TimeAgo.h"
 
@@ -36,13 +35,14 @@ static RCTopicViewController *sharedInstance;
 }
 
 - (void) loadRemoteInfo:(RCTopic *) aTopic {
-    [hud show:YES];
+    [SVProgressHUD show];
+    
     [self setupBlankWebView];
     [RCTopic findById:aTopic.ID async:^(id object, NSError *error) {
         if (!error) {
             topic = object;
             [self setupWebView];
-            [hud hide:YES];
+            [SVProgressHUD dismiss];
         }
     }];   
     
@@ -51,13 +51,7 @@ static RCTopicViewController *sharedInstance;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"载入中";
-    
-    
-    UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithTitle:@"回复" style:UIBarButtonItemStylePlain target:self action:@selector(replyButtonClick:)];
-    self.navigationItem.rightBarButtonItem = replyButton;
+    [SVProgressHUD showWithStatus:@"载入中"];
     
     webView.backgroundColor = [UIColor clearColor];
     webView.scrollView.bounces = NO;
@@ -67,6 +61,11 @@ static RCTopicViewController *sharedInstance;
     UISwipeGestureRecognizer *recognizerRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
     recognizerRight.direction = UISwipeGestureRecognizerDirectionRight;
     [webView addGestureRecognizer:recognizerRight];
+}
+
+- (void) appendReply: (RCReply *)reply {
+    [self.topic.replies addObject:reply];
+    [self setupWebView];
 }
 
 
@@ -177,9 +176,14 @@ static RCTopicViewController *sharedInstance;
 }
 
 
+- (IBAction)cancelButtonClick:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Button Events
 - (void) replyButtonClick: (id) sender {
-    [self.navigationController pushViewController:[RCReplyViewController shared] animated:YES];
+    [[RCReplyViewController shared] setTopic:self.topic];
+    [self presentViewController:[RCReplyViewController shared] animated:YES completion:nil];
 }
 
 @end

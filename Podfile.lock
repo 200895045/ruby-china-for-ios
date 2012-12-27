@@ -13,7 +13,6 @@ PODS:
 - ASIHTTPRequest/S3 (1.8.1):
   - Reachability
 - ActiveSupportInflector (0.0.1)
-- MBProgressHUD (0.5)
 - Reachability (3.1.0)
 - RestKit (0.20.0pre4):
   - RestKit/Core (= 0.20.0pre4)
@@ -35,16 +34,17 @@ PODS:
 - SOCKit (1.1)
 - SSPullToRefresh (1.0.1)
 - SSToolkit (1.0.2)
+- SVProgressHUD (0.8)
 - Survey (0.0.5)
 
 DEPENDENCIES:
 - ASIHTTPRequest (= 1.8.1)
 - ActiveSupportInflector (= 0.0.1)
-- MBProgressHUD (~> 0.5)
 - RestKit (= 0.20.0.pre4)
 - SDWebImage (~> 3.0)
 - SSPullToRefresh (~> 1.0.1)
 - SSToolkit (~> 1.0.2)
+- SVProgressHUD (= 0.8)
 - Survey (= 0.0.5)
 
 SPEC CHECKSUMS:
@@ -54,7 +54,6 @@ SPEC CHECKSUMS:
   ASIHTTPRequest/CloudFiles: e606d2df58b0aace6c1cf1d39a08d3484f91324a
   ASIHTTPRequest/S3: e606d2df58b0aace6c1cf1d39a08d3484f91324a
   ActiveSupportInflector: 1e181a454b23490c1b575c69caccf6e0b4a6db82
-  MBProgressHUD: b23ee11c42253d6d804e8e0bfabdc334e8b2571f
   Reachability: 1c8584c5f26fa776695efef95caaa50402c94cfb
   RestKit: 255d85eb5a52112b7df8b901e5fb73fc5a90f3c8
   RestKit/Core: 255d85eb5a52112b7df8b901e5fb73fc5a90f3c8
@@ -67,6 +66,7 @@ SPEC CHECKSUMS:
   SOCKit: 179515c1a621dd5652a60e9be02ea4adcd25bc9b
   SSPullToRefresh: 79a7981b5a08316749d8fae0b5c813fbc2fac7dd
   SSToolkit: 852044205c6a15586431e90f46b2ef01f693285a
+  SVProgressHUD: 51042a14e3a716efdbdd73cbb2181fb23ee94389
   Survey: fc3f6b427843adc11ca1bfd194557fc964d8792c
 
 COCOAPODS: 0.16.0

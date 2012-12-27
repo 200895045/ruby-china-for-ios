@@ -12,7 +12,6 @@
 #import "RCButton.h"
 #import "RCLinkButton.h"
 #import "RCBoxView.h"
-#import <MBProgressHUD/MBProgressHUD.h>
 #import <QuartzCore/QuartzCore.h>
 
 #define kLineColor [UIColor colorWithRed:0.9333 green:0.9333 blue:0.9333 alpha:1.0000]
@@ -171,23 +170,18 @@
         return;
     }
     
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.animationType = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"";
-    [hud show:YES];
+    [SVProgressHUD show];
     
     BOOL success = [RCUser authorize:loginForm.login.field.text password:loginForm.password.field.text];
     
-    [hud hide:YES];
     if (success) {
-        hud.labelText = @"登录成功";
+        [SVProgressHUD showSuccessWithStatus:@"登录成功"];
         [self dismissViewControllerAnimated:YES completion:^{
             //
         }];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登录" message:@"用户或密码错误，请重试。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
+        [SVProgressHUD showErrorWithStatus:@"用户名或密码错误"];
     }
 }
 

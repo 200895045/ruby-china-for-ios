@@ -21,4 +21,6 @@
 @property (nonatomic, strong) NSNumber *repliesCount, *lastReplyUserId, *nodeId, *hits;
 @property (nonatomic, strong) NSDate *repliedAt;
 
+- (void) createReply: (RCReply *) reply async: (void (^)(id object, NSError *error)) async;
+
 @end

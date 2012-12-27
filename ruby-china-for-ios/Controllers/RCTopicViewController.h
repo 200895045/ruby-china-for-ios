@@ -9,15 +9,19 @@
 #import "RCViewController.h"
 
 @class RCTopic;
-@class MBProgressHUD;
 
 @interface RCTopicViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>  {
     RCTopic *topic;
     IBOutlet UIWebView *webView;
-    MBProgressHUD *hud;
 }
 
 + (RCTopicViewController *) sharedInstance;
 
 @property (nonatomic, strong) RCTopic *topic;
+
+- (void) appendReply: (RCReply *)reply;
+
+
+- (IBAction)cancelButtonClick:(id)sender;
+- (IBAction)replyButtonClick:(id)sender;
 @end

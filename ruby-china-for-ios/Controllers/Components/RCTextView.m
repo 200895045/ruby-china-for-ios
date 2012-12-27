@@ -12,14 +12,16 @@
 
 @synthesize placeholders;
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        // Initialization code
+        //
     }
     return self;
 }
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -40,7 +42,6 @@
     [self setNeedsDisplay];
     return [super resignFirstResponder];
 }
-
 
 - (void) drawRect:(CGRect)rect {
     [super drawRect:rect];

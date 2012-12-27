@@ -53,7 +53,7 @@ static RCUser *_currentUser;
         [RCPreferences setPassword:password];
         
         NSString *token = [jsonResponse objectForKey:@"private_token"];
-        [RCPreferences setPrivateToken:[NSString stringWithFormat:@"%@1",token]];
+        [RCPreferences setPrivateToken:[NSString stringWithFormat:@"%@",token]];
         
         [[[RKObjectManager sharedManager] HTTPClient] setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Token %@",token]];
         

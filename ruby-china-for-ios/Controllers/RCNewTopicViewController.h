@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MBProgressHUD.h>
 #import "RCTextView.h"
+#include <ASIHTTPRequest.h>
 
 @class RCNode;
 
-@interface RCNewTopicViewController : UIViewController {
+@interface RCNewTopicViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate,ASIHTTPRequestDelegate> {
     IBOutlet RCTextView *titleTextView;
     IBOutlet RCTextView *bodyTextView;
     
@@ -20,11 +20,14 @@
     
     UIPickerView *pickerView;
     RCNode *selectedNode;
+    
+    UIImagePickerController *imagePicker;
 }
 
 + (RCNewTopicViewController *) shared;
 
 - (IBAction)nodeButtonClick:(id)sender;
 - (IBAction)photoButtonClick:(id)sender;
+- (IBAction)cancelButtonClick:(id)sender;
 
 @end

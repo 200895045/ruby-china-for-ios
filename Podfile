@@ -1,6 +1,6 @@
 platform :ios, "5.0"
 pod 'SDWebImage', '~> 3.0'
-pod 'MBProgressHUD', '~> 0.5'
+pod 'SVProgressHUD', '0.8'
 pod 'RestKit', '0.20.0.pre4'
 pod 'SSPullToRefresh', '~> 1.0.1'
 pod 'SSToolkit', '~> 1.0.2'
