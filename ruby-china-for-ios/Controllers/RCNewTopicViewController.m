@@ -12,7 +12,9 @@
 #import "RCTableView.h"
 #import "RCPreferences.h"
 #import <ASIFormDataRequest.h>
+#import "RCTopicsViewController.h"
 #import "RCTopicViewController.h"
+#import "RCAppDelegate.h"
 
 @implementation RCNewTopicViewController
 
@@ -132,9 +134,10 @@ static RCNewTopicViewController *_shared;
             [SVProgressHUD showSuccessWithStatus:@"发布成功"];
             [self.navigationController popViewControllerAnimated:YES];
             
-            [[RCTopicViewController sharedInstance] setTopic:object];
-            [self presentViewController:[RCTopicViewController sharedInstance] animated:YES completion:nil];
+            [[RCTopicViewController shared] setTopic:object];
             [self dismissViewControllerAnimated:NO completion:nil];
+            [self.rootViewController presentViewController:[RCTopicViewController shared] animated:YES completion:nil];
+            
         }
         else {
             [SVProgressHUD dismiss];

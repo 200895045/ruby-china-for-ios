@@ -15,18 +15,18 @@
 
 #define kTopicDetailFileName @"topic_detail.html"
 
-static RCTopicViewController *sharedInstance;
+static RCTopicViewController *_shared;
 
 @implementation RCTopicViewController
 
 @synthesize topic;
 
-+ (RCTopicViewController *) sharedInstance {
-    if (!sharedInstance) {
-        sharedInstance = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"RCTopicViewController"];
++ (RCTopicViewController *) shared {
+    if (!_shared) {
+        _shared = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"RCTopicViewController"];
     }
     
-    return sharedInstance;
+    return _shared;
 }
 
 - (void)setTopic:(RCTopic *) aTopic {

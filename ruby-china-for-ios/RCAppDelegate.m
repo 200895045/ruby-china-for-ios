@@ -11,6 +11,7 @@
 #import "RCAll.h"
 #import "RCPreferences.h"
 #import "RCLoginViewController.h"
+#import "RCTopicsViewController.h"
 
 
 @implementation RCAppDelegate
@@ -18,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
+    [self.window addSubview:[RCTopicsViewController shared].view];
     
     [self mapObjects];
     
@@ -54,119 +57,105 @@
 }
 
 - (void)mapObjects {
-    AFHTTPClient* client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kApiURL]];
-    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
-    RKObjectManager *manager = [[RKObjectManager alloc] initWithHTTPClient:client];
-   
-
-    // Error 
+//    AFHTTPClient* client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kApiURL]];
+//    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    
+    RKObjectManager *manager = [[RKObjectManager alloc] initWithBaseURL:[RKURL URLWithBaseURLString:kApiURL]];
+    manager.client.requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
+    
+    // Error
     RKObjectMapping *errorMapping = [RKObjectMapping mappingForClass:[RKErrorMessage class]];
-    [errorMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:@"" toKeyPath:@"errorMessage"]];
-    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassClientError);
-    RKResponseDescriptor *errorDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:errorMapping pathPattern:nil keyPath:@"error" statusCodes:statusCodes];
-
+    [errorMapping mapKeyPath:@"error" toAttribute:@"errorMessage"];
+    [manager.mappingProvider setErrorMapping:errorMapping];
     
     // Node
     RKObjectMapping *nodeMapping = [RKObjectMapping mappingForClass:[RCNode class]];
-    [nodeMapping addAttributeMappingsFromArray:@[@"name", @"summary",@"sort"]];
-    [nodeMapping addAttributeMappingsFromDictionary:@{
-     @"id" : @"ID",
-     @"topics_count" : @"topicsCount",
-    }];
-    RKResponseDescriptor *nodeDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:nodeMapping
-                                                                                   pathPattern:[RCNode tableName]
-                                                                                       keyPath:nil
-                                                                                   statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    [nodeMapping mapAttributes:@"name", @"summary",@"sort", nil];
+    [nodeMapping mapKeyPathsToAttributes:@"id" , @"ID",
+     @"topics_count" , @"topicsCount",
+     nil];
+    [manager.mappingProvider setObjectMapping:nodeMapping forKeyPath:@"/nodes/:id.json"];
     
     // User
     RKObjectMapping *userMapping = [RKObjectMapping mappingForClass:[RCUser class]];
-    [userMapping addAttributeMappingsFromArray:@[@"login", @"name", @"company", @"location", @"bio", @"tagline", @"website"]];
-    [userMapping addAttributeMappingsFromDictionary:@{
-     @"id" : @"ID",
-     @"created_at" : @"createdAt",
-     @"updated_at" : @"updatedAt",
-     @"github_url" : @"githubUrl",
-     @"avatar_url" : @"avatarUrl"
-     }];
-    RKResponseDescriptor *userDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:userMapping
-                                                                                   pathPattern:@"users/:id"
-                                                                                       keyPath:nil
-                                                                                   statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    [userMapping mapAttributes:@"login", @"name", @"company", @"location", @"bio", @"tagline", @"website",nil];
+    [userMapping mapKeyPathsToAttributes: @"id" , @"ID",
+     @"created_at" , @"createdAt",
+     @"updated_at" , @"updatedAt",
+     @"github_url" , @"githubUrl",
+     @"avatar_url" , @"avatarUrl"
+     ,nil];
+    [manager.mappingProvider setObjectMapping:userMapping forKeyPath:@"/users/:login.json"];
 
     
     
     // Reply
     RKObjectMapping *replyMapping = [RKObjectMapping mappingForClass:[RCReply class]];
-    [replyMapping addAttributeMappingsFromArray:@[@"body"]];
-    [replyMapping addAttributeMappingsFromDictionary:@{
-     @"id" : @"ID",
-     @"created_at" : @"createdAt",
-     @"updated_at" : @"updatedAt",
-     @"body_html" : @"bodyHtml",
-     @"topic_id" : @"topicId",
-     }];
-    [replyMapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:userMapping];
-    RKResponseDescriptor *replyDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:replyMapping
-                                                                                    pathPattern:@"topics/:id/replies"
-                                                                                        keyPath:nil
-                                                                                    statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-
+    [replyMapping mapAttributes:@"body",nil];
+    [replyMapping mapKeyPathsToAttributes: @"id", @"ID",
+     @"created_at", @"createdAt",
+     @"updated_at", @"updatedAt",
+     @"body_html", @"bodyHtml",
+     @"topic_id", @"topicId" ,nil];
+    [replyMapping mapRelationship:@"user" withMapping:userMapping];
+    
+    // Reply Submit
+    RKObjectMapping *replySerializationMapping = [RKObjectMapping mappingForClass:[RCReply class]];
+    [replySerializationMapping mapKeyPath:@"body" toAttribute:@"body"];
+    [replySerializationMapping mapKeyPath:@"topicId" toAttribute:@"topic_id"];
+    [manager.mappingProvider setSerializationMapping:replySerializationMapping forClass:[RCReply class]];
+    [manager.router routeClass:[RCReply class] toResourcePath:@"/topics/:id/replies" forMethod:RKRequestMethodPOST];
     
     
     // Topic
     RKObjectMapping *topicMapping = [RKObjectMapping mappingForClass:[RCTopic class]];
-    [topicMapping addAttributeMappingsFromArray:@[@"title", @"body", @"hits"]];
-    [topicMapping addAttributeMappingsFromDictionary:@{
-         @"id" : @"ID",
-         @"created_at" : @"createdAt",
-         @"updated_at" : @"updatedAt",
-         @"body_html" : @"bodyHtml",
-         @"last_reply_user_login" : @"lastReplyUserLogin",
-         @"last_reply_user_id" : @"lastReplyUserId",
-         @"node_name" : @"nodeName",
-         @"node_id" : @"nodeId",
-         @"replied_at" : @"repliedAt",
-         @"replies_count" : @"repliesCount",
-         @"user_login" : @"userLogin",
-     }];
-    [topicMapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:userMapping];
-    [topicMapping addRelationshipMappingWithSourceKeyPath:@"node" mapping:nodeMapping];
-    [topicMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"replies" toKeyPath:@"replies" withMapping:replyMapping]];
+    [topicMapping mapAttributes:@"title", @"body", @"hits",nil];
+    [topicMapping mapKeyPathsToAttributes:@"id" , @"ID",
+         @"created_at", @"createdAt",
+         @"updated_at", @"updatedAt",
+         @"body_html", @"bodyHtml",
+         @"last_reply_user_login", @"lastReplyUserLogin",
+         @"last_reply_user_id", @"lastReplyUserId",
+         @"node_name", @"nodeName",
+         @"node_id", @"nodeId",
+         @"replied_at", @"repliedAt",
+         @"replies_count", @"repliesCount",
+         @"user_login", @"userLogin",nil];
+    [topicMapping mapRelationship:@"user" withMapping:userMapping];
+    [topicMapping mapRelationship:@"node" withMapping:nodeMapping];
+    [topicMapping mapKeyPath:@"replies" toRelationship:@"replies" withMapping:replyMapping];
+    [manager.mappingProvider setObjectMapping:topicMapping forKeyPath:@"/topics"];
+    [manager.mappingProvider setObjectMapping:topicMapping forKeyPath:@"/topics/:id"];
+    
+    
+    // Topic Submit    
+    RKObjectMapping *topicSerializationMapping = [RKObjectMapping mappingForClass:[RCTopic class]];
+    [topicSerializationMapping mapKeyPath:@"title" toAttribute:@"title"];
+    [topicSerializationMapping mapKeyPath:@"body" toAttribute:@"body"];
+    [topicSerializationMapping mapKeyPath:@"nodeId" toAttribute:@"node_id"];
+    [manager.mappingProvider setSerializationMapping:topicSerializationMapping forClass:[RCTopic class]];
+    [manager.router routeClass:[RCTopic class] toResourcePath:@"/topics" forMethod:RKRequestMethodPOST];
+    
+//
+//    // MARK: Request Mapping
+//    RKObjectMapping *topicSubmitMapping = [RKObjectMapping requestMapping];
+//    [topicSubmitMapping addAttributeMappingsFromDictionary:@{
+//     @"title" : @"title",
+//     @"body" : @"body",
+//     @"nodeId" : @"node_id"
+//     }];
+//    RKRequestDescriptor *topicRequestDescripter = [RKRequestDescriptor requestDescriptorWithMapping:topicSubmitMapping objectClass:[RCTopic class] rootKeyPath:nil];
+//    
+//    RKObjectMapping *replySubmitMapping = [RKObjectMapping requestMapping];
+//    [replySubmitMapping addAttributeMappingsFromDictionary:@{
+//     @"topicId" : @"topic_id",
+//     @"body" : @"body",
+//     }];
+//    RKRequestDescriptor *replyRequestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:replySubmitMapping
+//                                                                                        objectClass:[RCReply class]
+//                                                                                        rootKeyPath:nil];
+//
 
-    
-    RKResponseDescriptor *topicsDescripter = [RKResponseDescriptor responseDescriptorWithMapping:topicMapping
-                                                                                    pathPattern:@"topics"
-                                                                                        keyPath:nil
-                                                                                    statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    RKResponseDescriptor *topicDescripter = [RKResponseDescriptor responseDescriptorWithMapping:topicMapping
-                                                                                     pathPattern:@"topics/:id"
-                                                                                         keyPath:nil
-                                                                                     statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    
-    [manager addResponseDescriptorsFromArray:@[errorDescriptor, nodeDescriptor, userDescriptor, replyDescriptor, topicsDescripter, topicDescripter ]];
-    
-    
-    // MARK: Request Mapping
-    RKObjectMapping *topicSubmitMapping = [RKObjectMapping requestMapping];
-    [topicSubmitMapping addAttributeMappingsFromDictionary:@{
-     @"title" : @"title",
-     @"body" : @"body",
-     @"nodeId" : @"node_id"
-     }];
-    RKRequestDescriptor *topicRequestDescripter = [RKRequestDescriptor requestDescriptorWithMapping:topicSubmitMapping objectClass:[RCTopic class] rootKeyPath:nil];
-    
-    RKObjectMapping *replySubmitMapping = [RKObjectMapping requestMapping];
-    [replySubmitMapping addAttributeMappingsFromDictionary:@{
-     @"topicId" : @"topic_id",
-     @"body" : @"body",
-     }];
-    RKRequestDescriptor *replyRequestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:replySubmitMapping
-                                                                                        objectClass:[RCReply class]
-                                                                                        rootKeyPath:nil];
-
-    [manager addRequestDescriptorsFromArray:@[ topicRequestDescripter, replyRequestDescriptor ]];
 }
 
 

@@ -14,14 +14,12 @@
 - (id) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        bgImage = [UIImage imageNamed:@"bg.png"];
         self.separatorColor = [UIColor clearColor];
     }
     return self;
 }
 
 - (void) drawRect:(CGRect)rect {
-    [bgImage drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [super drawRect:rect];
 }
 

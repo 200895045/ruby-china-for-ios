@@ -17,6 +17,8 @@
     SSPullToRefreshView *pullToRefreshView;
 }
 
++ (RCTopicsViewController *) shared;
+
 
 - (void) refresh;
 

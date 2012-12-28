@@ -15,7 +15,7 @@
     IBOutlet UIWebView *webView;
 }
 
-+ (RCTopicViewController *) sharedInstance;
++ (RCTopicViewController *) shared;
 
 @property (nonatomic, strong) RCTopic *topic;
 

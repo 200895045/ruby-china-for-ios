@@ -12,4 +12,7 @@
     IBOutlet UITableView *tableView;
 }
 
+@property (nonatomic, readonly) UIViewController *rootViewController;
+
+
 @end

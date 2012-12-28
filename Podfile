@@ -1,9 +1,10 @@
 platform :ios, "5.0"
 pod 'SDWebImage', '~> 3.0'
 pod 'SVProgressHUD', '0.8'
-pod 'RestKit', '0.20.0.pre4'
+pod 'RestKit', '0.10.3'
 pod 'SSPullToRefresh', '~> 1.0.1'
 pod 'SSToolkit', '~> 1.0.2'
 pod 'ASIHTTPRequest','1.8.1'
+pod 'AFNetworking', '1.1.0'
 pod 'Survey', '0.0.5'
 pod 'ActiveSupportInflector', '0.0.1'

@@ -30,7 +30,7 @@
         <!--Topics View Controller - 话题列表-->
         <scene sceneID="11">
             <objects>
-                <viewController title="话题列表" id="2" customClass="RCTopicsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RCTopicsViewController" title="话题列表" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2" customClass="RCTopicsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="16">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -317,7 +317,7 @@
         <class className="RCNavigationBar" superclassName="UINavigationBar">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RCNavigationBar.h"/>
         </class>
-        <class className="RCNewTopicViewController" superclassName="UIViewController">
+        <class className="RCNewTopicViewController" superclassName="RCViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RCNewTopicViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancelButtonClick:"/>

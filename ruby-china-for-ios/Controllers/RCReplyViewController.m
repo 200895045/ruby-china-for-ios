@@ -62,7 +62,7 @@ static RCReplyViewController *_shared;
         if (!error) {
             [SVProgressHUD showSuccessWithStatus:@"回帖成功"];
 
-            [[RCTopicViewController sharedInstance] appendReply:object];
+            [[RCTopicViewController shared] appendReply:object];
             
             [self dismissViewControllerAnimated:YES completion:nil];
         }

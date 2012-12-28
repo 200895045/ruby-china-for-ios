@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "RCTextView.h"
 #include <ASIHTTPRequest.h>
+#import "RCViewController.h"
 
 @class RCNode;
 
-@interface RCNewTopicViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate,ASIHTTPRequestDelegate> {
+@interface RCNewTopicViewController : RCViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate,ASIHTTPRequestDelegate> {
     IBOutlet RCTextView *titleTextView;
     IBOutlet RCTextView *bodyTextView;
     

@@ -55,7 +55,7 @@ static RCUser *_currentUser;
         NSString *token = [jsonResponse objectForKey:@"private_token"];
         [RCPreferences setPrivateToken:[NSString stringWithFormat:@"%@",token]];
         
-        [[[RKObjectManager sharedManager] HTTPClient] setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Token %@",token]];
+        [[[RKObjectManager sharedManager] client] setValue:token forHTTPHeaderField:@"AUTHORIZATION"];
         
         // TODO: 需要用同步的方式查询 User
         [RCUser findByStringId:login async:^(id object, NSError *error) {

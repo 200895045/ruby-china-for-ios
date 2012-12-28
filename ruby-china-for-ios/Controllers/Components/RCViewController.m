@@ -7,13 +7,17 @@
 //
 
 #import "RCViewController.h"
+#import "RCAppDelegate.h"
 
 @implementation RCViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
+}
+
+- (UIViewController *) rootViewController {
+    RCAppDelegate *appDelegate = (RCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    return appDelegate.window.rootViewController;
 }
 
 @end

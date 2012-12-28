@@ -20,6 +20,17 @@
 
 @implementation RCTopicsViewController
 
+static RCTopicsViewController *_shared;
+
+
++ (RCTopicsViewController *) shared {
+    if (!_shared) {
+        _shared = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"RCTopicsViewController"];
+    }
+    
+    return _shared;
+}
+
 - (id) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -140,9 +151,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     RCTopic *topic = [topics objectAtIndex:indexPath.row];
     
-    [[RCTopicViewController sharedInstance] setTopic:topic];
+    [[RCTopicViewController shared] setTopic:topic];
     
-    [self presentViewController:[RCTopicViewController sharedInstance] animated:YES completion:nil];
+    [self presentViewController:[RCTopicViewController shared] animated:YES completion:nil];
     
 }
 @end
