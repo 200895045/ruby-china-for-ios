@@ -98,6 +98,7 @@
      @"body_html", @"bodyHtml",
      @"topic_id", @"topicId" ,nil];
     [replyMapping mapRelationship:@"user" withMapping:userMapping];
+    [manager.mappingProvider addObjectMapping:replyMapping];
     
     // Reply Submit
     RKObjectMapping *replySerializationMapping = [RKObjectMapping mappingForClass:[RCReply class]];

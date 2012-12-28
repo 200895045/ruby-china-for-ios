@@ -15,11 +15,13 @@
 @synthesize user, node, lastReplyUserId, lastReplyUserLogin, replies, title, body, bodyHtml, repliesCount, repliedAt, nodeId, nodeName, hits;
 
 - (void) createReply: (RCReply *) reply async: (void (^)(id object, NSError *error)) async {   
-    
-    [[RKObjectManager sharedManager] postObject:reply usingBlock:^(RKObjectLoader *loader) {
+    reply.topicId = self.ID;
+    [[RKObjectManager sharedManager] sendObject:reply
+                                 toResourcePath:[NSString stringWithFormat:@"/topics/%@/replies",self.ID]
+                                     usingBlock:^(RKObjectLoader *loader) {
+        loader.method = RKRequestMethodPOST;
         loader.objectMapping = [[RKObjectManager sharedManager].mappingProvider objectMappingForClass:[RCReply class]];
         loader.serializationMapping = [[RKObjectManager sharedManager].mappingProvider serializationMappingForClass:[RCReply class]];
-        loader.resourcePath = [NSString stringWithFormat:@"topics/%@/replies",self.ID];
         loader.onDidLoadObject = ^(id object) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 async(object, nil);

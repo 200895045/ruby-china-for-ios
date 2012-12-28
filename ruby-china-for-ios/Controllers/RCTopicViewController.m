@@ -42,7 +42,6 @@ static RCTopicViewController *_shared;
         if (!error) {
             topic = object;
             [self setupWebView];
-            [SVProgressHUD dismiss];
         }
     }];   
     
@@ -66,6 +65,7 @@ static RCTopicViewController *_shared;
 - (void) appendReply: (RCReply *)reply {
     [self.topic.replies addObject:reply];
     [self setupWebView];
+    [self webViewScrollToBottom];
 }
 
 
@@ -157,6 +157,26 @@ static RCTopicViewController *_shared;
     key = [NSString stringWithFormat:@"{{%@}}",key];
     html = [html stringByReplacingOccurrencesOfString:key withString:stringValue];
     return html;
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [SVProgressHUD dismiss];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        NSLog(@"request URL: %@", request.URL.absoluteString);
+        return NO;
+    }
+    return YES;
+}
+
+- (void) webViewScrollToTop {
+    [webView.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
+- (void) webViewScrollToBottom {
+    [webView.scrollView setContentOffset:CGPointMake(0, webView.scrollView.contentSize.height - webView.frame.size.height) animated:YES];
 }
 
 #pragma mark - 手势

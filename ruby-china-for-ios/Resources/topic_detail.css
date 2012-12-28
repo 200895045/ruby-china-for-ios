@@ -4,8 +4,9 @@ body {
   font-size: 13px;
   line-height: 18px;
   color: #333333;
-  background-color: #e0e0e0;
-  padding: 10px;
+  background: #e0e0e0 url(view_bg@2x.png) left top repeat;
+  background-size:100px 100px;
+  padding:6px;
 }
 
 h1 {
@@ -324,7 +325,7 @@ form .node_select select {
 }
 
 /* Topic & Reply body format */
-.topics .topic .body,
+#topic_show .body,
 #replies .reply .body {
   position: relative;
   line-height: 160%;
