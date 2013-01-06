@@ -12,6 +12,7 @@
 #import "RCPreferences.h"
 #import "RCLoginViewController.h"
 #import "RCTopicsViewController.h"
+#import <ShareKit/SHKConfiguration.h>
 
 
 @implementation RCAppDelegate
@@ -25,6 +26,9 @@
     [self mapObjects];
     
     [RCUser checkLogin];
+    
+    DefaultSHKConfigurator *configurator = [[DefaultSHKConfigurator alloc] init];
+    [SHKConfiguration sharedInstanceWithConfigurator:configurator];
     
     return YES;
 }

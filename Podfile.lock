@@ -13,6 +13,8 @@ PODS:
 - ASIHTTPRequest/S3 (1.8.1):
   - Reachability
 - ActiveSupportInflector (0.0.1)
+- Facebook-iOS-SDK (1.2):
+  - SBJson (= 2.2.3)
 - FileMD5Hash (0.0.1)
 - ISO8601DateFormatter (0.6)
 - JSONKit (1.5pre)
@@ -41,16 +43,75 @@ PODS:
   - JSONKit (>= 1.5pre)
   - RestKit/Network
 - RestKit/UI (0.10.3)
+- SBJson (2.2.3)
 - SDWebImage (3.0):
   - SDWebImage/Main (= 3.0)
 - SDWebImage/Main (3.0)
 - SOCKit (1.1)
+- SSKeychain (0.1.4)
 - SSPullToRefresh (1.0.1)
 - SSToolkit (1.0.2)
 - SVProgressHUD (0.8)
+- ShareKit (2.0):
+  - Reachability
+  - SSKeychain
+  - ShareKit/Evernote (= 2.0)
+  - ShareKit/Facebook (= 2.0)
+  - ShareKit/Flickr (= 2.0)
+  - ShareKit/Foursquare (= 2.0)
+  - ShareKit/GoogleReader (= 2.0)
+  - ShareKit/Instapaper (= 2.0)
+  - ShareKit/LinkedIn (= 2.0)
+  - ShareKit/Pinboard (= 2.0)
+  - ShareKit/ReadItLater (= 2.0)
+  - ShareKit/Tumblr (= 2.0)
+  - ShareKit/Twitter (= 2.0)
+  - ShareKit/Vkontakte (= 2.0)
+- ShareKit/Evernote (2.0):
+  - Reachability
+  - SSKeychain
+- ShareKit/Facebook (2.0):
+  - Facebook-iOS-SDK (= 1.2)
+  - Reachability
+  - SSKeychain
+- ShareKit/Flickr (2.0):
+  - Reachability
+  - SSKeychain
+  - objectiveflickr (= 2.0.2)
+- ShareKit/Foursquare (2.0):
+  - Reachability
+  - SBJson
+  - SSKeychain
+- ShareKit/GoogleReader (2.0):
+  - Reachability
+  - SSKeychain
+- ShareKit/Instapaper (2.0):
+  - Reachability
+  - SSKeychain
+- ShareKit/LinkedIn (2.0):
+  - Reachability
+  - SSKeychain
+- ShareKit/Pinboard (2.0):
+  - Reachability
+  - SSKeychain
+- ShareKit/ReadItLater (2.0):
+  - Reachability
+  - SSKeychain
+- ShareKit/Tumblr (2.0):
+  - Reachability
+  - SSKeychain
+- ShareKit/Twitter (2.0):
+  - JSONKit
+  - Reachability
+  - SSKeychain
+- ShareKit/Vkontakte (2.0):
+  - JSONKit
+  - Reachability
+  - SSKeychain
 - Survey (0.0.5)
 - cocoa-oauth (0.0.1):
   - NSData+Base64 (~> 1.0)
+- objectiveflickr (2.0.2)
 
 DEPENDENCIES:
 - AFNetworking (= 1.1.0)
@@ -59,17 +120,19 @@ DEPENDENCIES:
 - RestKit (= 0.10.3)
 - SDWebImage (~> 3.0)
 - SSPullToRefresh (~> 1.0.1)
-- SSToolkit (~> 1.0.2)
+- SSToolkit (= 1.0.2)
 - SVProgressHUD (= 0.8)
+- ShareKit (= 2.0)
 - Survey (= 0.0.5)
 
 SPEC CHECKSUMS:
-  AFNetworking: e2d5724bbc7343aea10b22eb70773f6063409a0e
+  AFNetworking: 761a418233d280c1e0580bcb76ff9cb4c3073d17
   ASIHTTPRequest: e606d2df58b0aace6c1cf1d39a08d3484f91324a
   ASIHTTPRequest/ASIWebPageRequest: e606d2df58b0aace6c1cf1d39a08d3484f91324a
   ASIHTTPRequest/CloudFiles: e606d2df58b0aace6c1cf1d39a08d3484f91324a
   ASIHTTPRequest/S3: e606d2df58b0aace6c1cf1d39a08d3484f91324a
   ActiveSupportInflector: 1e181a454b23490c1b575c69caccf6e0b4a6db82
+  Facebook-iOS-SDK: 10fb464fef5b9d9d7fa274da4b7ba1b93b0768ae
   FileMD5Hash: c3b015e6fb293eea0a0c276747f61f20408c2644
   ISO8601DateFormatter: dc05a2481edf49668d85d3ff8c466c32eb544780
   JSONKit: 3d4708953ea7ae399a49777372d8b060a43ddd27
@@ -83,13 +146,29 @@ SPEC CHECKSUMS:
   RestKit/ObjectMapping/CoreData: 1fb57eb941d7d2587648491507a0bcaeb70b67f2
   RestKit/ObjectMapping/JSON: 1fb57eb941d7d2587648491507a0bcaeb70b67f2
   RestKit/UI: 1fb57eb941d7d2587648491507a0bcaeb70b67f2
+  SBJson: cc373c9eed9314a45715e4fb77a1415c45fa056e
   SDWebImage: afa3965bcb37797ba4ecac49393897b99d1b4be7
   SDWebImage/Main: afa3965bcb37797ba4ecac49393897b99d1b4be7
   SOCKit: 179515c1a621dd5652a60e9be02ea4adcd25bc9b
+  SSKeychain: bae692a4354f48691ca3463a121dc8060f781a7d
   SSPullToRefresh: 79a7981b5a08316749d8fae0b5c813fbc2fac7dd
-  SSToolkit: 852044205c6a15586431e90f46b2ef01f693285a
+  SSToolkit: 9751b7ec0d068dc1dc46c8121dfeff808f9e3d35
   SVProgressHUD: 51042a14e3a716efdbdd73cbb2181fb23ee94389
+  ShareKit: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/Evernote: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/Facebook: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/Flickr: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/Foursquare: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/GoogleReader: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/Instapaper: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/LinkedIn: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/Pinboard: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/ReadItLater: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/Tumblr: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/Twitter: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
+  ShareKit/Vkontakte: e66bcbf977fa93ab3e3f33c3ce637e9bbe98945c
   Survey: fc3f6b427843adc11ca1bfd194557fc964d8792c
   cocoa-oauth: 8f4c8b77c77ac660de37f8125557c4ec09b0118a
+  objectiveflickr: 17f5f1fd4b9b9d6761a9545493c79221f65604c3
 
 COCOAPODS: 0.16.0

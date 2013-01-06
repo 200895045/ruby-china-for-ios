@@ -12,6 +12,7 @@
 #import "RCAll.h"
 #import "RCNavigationBar.h"
 #import "NSDate+TimeAgo.h"
+#import <SHK.h>
 
 #define kTopicDetailFileName @"topic_detail.html"
 
@@ -171,11 +172,11 @@ static RCTopicViewController *_shared;
     return YES;
 }
 
-- (void) webViewScrollToTop {
+- (IBAction) webViewScrollToTop {
     [webView.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
-- (void) webViewScrollToBottom {
+- (IBAction) webViewScrollToBottom {
     [webView.scrollView setContentOffset:CGPointMake(0, webView.scrollView.contentSize.height - webView.frame.size.height) animated:YES];
 }
 
@@ -196,14 +197,34 @@ static RCTopicViewController *_shared;
 }
 
 
+
+#pragma mark - Button Events
+
 - (IBAction)cancelButtonClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - Button Events
-- (void) replyButtonClick: (id) sender {
+- (IBAction) replyButtonClick: (id) sender {
     [[RCReplyViewController shared] setTopic:self.topic];
     [self presentViewController:[RCReplyViewController shared] animated:YES completion:nil];
+}
+
+- (IBAction)shareButtonClick:(id)sender {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://ruby-china.org/topics/%@", topic.ID]];
+	SHKItem *item = [SHKItem URL:url title:[NSString stringWithFormat:@"%@ va: @ruby_china",topic.title]];
+    
+	// Get the ShareKit action sheet
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    [actionSheet showFromToolbar:toolbar];
+}
+
+- (IBAction)reloadButtonClick:(id)sender {
+    [SVProgressHUD showWithStatus:@"载入中"];
+    [self setupBlankWebView];
+    [RCTopic findById:topic.ID async:^(id object, NSError *error) {
+        self.topic = object;
+        [self setupWebView];
+    }];
 }
 
 @end

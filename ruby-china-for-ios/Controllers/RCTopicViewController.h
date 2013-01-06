@@ -12,6 +12,7 @@
 
 @interface RCTopicViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>  {
     RCTopic *topic;
+    IBOutlet UIToolbar *toolbar;
     IBOutlet UIWebView *webView;
 }
 
@@ -24,4 +25,9 @@
 
 - (IBAction)cancelButtonClick:(id)sender;
 - (IBAction)replyButtonClick:(id)sender;
+- (IBAction)shareButtonClick:(id)sender;
+- (IBAction)x:(id)sender;
+
+- (IBAction) webViewScrollToTop;
+- (IBAction) webViewScrollToBottom;
 @end

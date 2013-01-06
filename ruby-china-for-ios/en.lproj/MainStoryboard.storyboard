@@ -93,21 +93,51 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZi-Yu-u86">
+                                <items>
+                                    <barButtonItem image="reload_icon.png" style="plain" id="UMX-NE-1AJ">
+                                        <connections>
+                                            <action selector="reloadButtonClick:" destination="Ict-Dp-uwZ" id="XZK-y2-f7e"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="O3m-UX-D0l"/>
+                                    <barButtonItem image="rnd_br_up_icon.png" style="plain" id="uG7-e1-6nd">
+                                        <connections>
+                                            <action selector="webViewScrollToTop" destination="Ict-Dp-uwZ" id="JQH-AH-uIB"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="rnd_br_down_icon.png" style="plain" id="HEN-aw-ytE">
+                                        <connections>
+                                            <action selector="webViewScrollToBottom" destination="Ict-Dp-uwZ" id="trR-VT-w8f"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qKK-N8-H6e"/>
+                                    <barButtonItem image="share_2_icon.png" style="plain" id="W87-O8-qTm">
+                                        <connections>
+                                            <action selector="shareButtonClick:" destination="Ict-Dp-uwZ" id="LX9-xg-ct0"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bB2-28-A08" firstAttribute="trailing" secondItem="23e-lE-vYc" secondAttribute="trailing" type="default" id="0mr-U3-YMa"/>
+                            <constraint firstItem="DZi-Yu-u86" firstAttribute="trailing" secondItem="23e-lE-vYc" secondAttribute="trailing" type="default" id="Baw-v8-5CP"/>
                             <constraint firstItem="TMz-7E-rPa" firstAttribute="bottom" secondItem="bB2-28-A08" secondAttribute="top" type="default" id="GJq-F8-XNU"/>
-                            <constraint firstItem="bB2-28-A08" firstAttribute="bottom" secondItem="23e-lE-vYc" secondAttribute="bottom" type="default" id="TW1-mQ-qRq"/>
+                            <constraint firstItem="DZi-Yu-u86" firstAttribute="leading" secondItem="23e-lE-vYc" secondAttribute="leading" type="default" id="IBc-u3-dwb"/>
                             <constraint firstItem="TMz-7E-rPa" firstAttribute="trailing" secondItem="23e-lE-vYc" secondAttribute="trailing" type="default" id="mHI-Af-vOL"/>
                             <constraint firstItem="TMz-7E-rPa" firstAttribute="top" secondItem="23e-lE-vYc" secondAttribute="top" type="default" id="nuk-n6-YWM"/>
                             <constraint firstItem="TMz-7E-rPa" firstAttribute="leading" secondItem="23e-lE-vYc" secondAttribute="leading" type="default" id="slx-iB-Vns"/>
                             <constraint firstItem="bB2-28-A08" firstAttribute="leading" secondItem="23e-lE-vYc" secondAttribute="leading" type="default" id="xJs-3e-xsA"/>
+                            <constraint firstItem="DZi-Yu-u86" firstAttribute="bottom" secondItem="23e-lE-vYc" secondAttribute="bottom" type="default" id="xlr-6r-cgS"/>
+                            <constraint firstItem="DZi-Yu-u86" firstAttribute="top" secondItem="bB2-28-A08" secondAttribute="bottom" type="default" id="yVt-Y1-gfP"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="toolbar" destination="DZi-Yu-u86" id="aLB-ko-kY8"/>
                         <outlet property="webView" destination="bB2-28-A08" id="rQ8-p9-Mga"/>
                     </connections>
                 </viewController>
@@ -307,6 +337,10 @@
     </scenes>
     <resources>
         <image name="picture_icon_black.png" width="16" height="16"/>
+        <image name="reload_icon.png" width="16" height="16"/>
+        <image name="rnd_br_down_icon.png" width="16" height="16"/>
+        <image name="rnd_br_up_icon.png" width="16" height="16"/>
+        <image name="share_2_icon.png" width="16" height="16"/>
         <image name="spechbubble_2_icon.png" width="16" height="16"/>
         <image name="tag_icon_black.png" width="16" height="16"/>
     </resources>
@@ -347,7 +381,12 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RCTopicViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancelButtonClick:"/>
+                <relationship kind="action" name="reloadButtonClick:"/>
                 <relationship kind="action" name="replyButtonClick:"/>
+                <relationship kind="action" name="shareButtonClick:"/>
+                <relationship kind="action" name="webViewScrollToBottom"/>
+                <relationship kind="action" name="webViewScrollToTop"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>
